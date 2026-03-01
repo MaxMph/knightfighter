@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://cohjb3h17xr7g"]
+
+[ext_resource type="Script" uid="uid://btdeci571jaac" path="res://enemy_try_1.gd" id="1_ieex1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_056rr"]
+albedo_color = Color(0.83819616, 0.33932495, 0.3340523, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vi7a4"]
+size = Vector3(0.6, 0.4, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ieex1"]
+size = Vector3(0.1, 1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vi7a4"]
+size = Vector3(0.1, 1, 0.1)
+
+[sub_resource type="Animation" id="Animation_ieex1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../attack_hitbox/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_vi7a4"]
+resource_name = "swing"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.6627159, 0, 0.35113335), Vector3(-0.83771414, -0.27698237, 0.050194025)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-2.5942773e-08, -0.4083372, -1.1420213), Vector3(-0.29771736, 2.8846064, -1.7685505)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../attack_hitbox/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26, 0.46),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7yfgk"]
+_data = {
+&"RESET": SubResource("Animation_ieex1"),
+&"swing": SubResource("Animation_vi7a4")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7yfgk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dfvlk"]
+
+[node name="enemy try 1" type="CharacterBody3D" unique_id=1591658444]
+collision_layer = 3
+script = ExtResource("1_ieex1")
+
+[node name="head" type="Node3D" parent="." unique_id=2097414884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head" unique_id=1545786156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2701453)
+material_override = SubResource("StandardMaterial3D_056rr")
+mesh = SubResource("BoxMesh_vi7a4")
+
+[node name="weapon holder" type="Node3D" parent="head" unique_id=582146347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="sword" type="Node3D" parent="head/weapon holder" unique_id=1654325292]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/weapon holder/sword" unique_id=159163827]
+mesh = SubResource("BoxMesh_ieex1")
+
+[node name="Area3D" type="Area3D" parent="head/weapon holder/sword" unique_id=946853830]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/weapon holder/sword/Area3D" unique_id=525179428]
+shape = SubResource("BoxShape3D_vi7a4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="head/weapon holder/sword" unique_id=24466803]
+libraries/ = SubResource("AnimationLibrary_7yfgk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1788396848]
+shape = SubResource("CapsuleShape3D_7yfgk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1196995061]
+mesh = SubResource("CapsuleMesh_dfvlk")
