@@ -1,0 +1,61 @@
+extends CharacterBody3D
+
+@export var speed: float = 280.0
+@export var drag: float = 1.0
+@export var drop: float = 18.0
+
+var dmg: float = 10.0
+
+@onready var ray = RayCast3D.new()
+
+var spawn_transform
+var last_pos
+
+var sender = null
+
+func _ready() -> void:
+	#ray.collision_mask = 131
+	add_sibling(ray)
+
+	global_transform = spawn_transform
+
+	velocity = transform.basis * Vector3(0,0,-speed)
+	last_pos = position
+	ray.global_position = global_position
+
+
+func _process(delta: float) -> void:
+	ray.target_position = global_position - ray.global_position
+	ray.position = last_pos
+	last_pos = position
+	ray.force_raycast_update()
+	
+	#update_trail($trail, ray.global_position, global_position)
+	
+	velocity.y -= drop * delta
+	
+	if ray.is_colliding():
+		if ray.get_collider().has_method("hit"):
+			ray.get_collider().hit(dmg, self)
+		ray.queue_free()
+		queue_free()
+	
+	move_and_slide()
+
+#func update_trail(trail: MeshInstance3D, from: Vector3, to: Vector3):
+	#var direction = to - from
+	#var length = direction.length()
+#
+	#if length == 0.0:
+		#return
+#
+	#var midpoint = from + direction# * 0.5
+#
+	#trail.global_position = midpoint
+#
+	#trail.look_at(to, Vector3.UP)
+#
+	## Scale (stretch along Z)
+	#var scale = trail.scale
+	#scale.z = length
+	#trail.scale = scale * 2

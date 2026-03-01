@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bpstbwh4pq5u"]
 
-[ext_resource type="Script" uid="uid://ctfeoacyomtvy" path="res://enemy_try_2.gd" id="1_o4apd"]
+[ext_resource type="Script" uid="uid://ctfeoacyomtvy" path="res://test 1/enemy_try_2.gd" id="1_o4apd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_comhj"]
 albedo_color = Color(0.83819616, 0.33932495, 0.3340523, 1)
@@ -9,9 +9,6 @@ albedo_color = Color(0.83819616, 0.33932495, 0.3340523, 1)
 size = Vector3(0.6, 0.4, 0.6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_14hdb"]
-size = Vector3(0.1, 1, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kbhp5"]
 size = Vector3(0.1, 1, 0.1)
 
 [sub_resource type="Animation" id="Animation_ieex1"]
@@ -53,9 +50,37 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_vi7a4"]
-resource_name = "swing"
-length = 0.6
+[sub_resource type="Animation" id="Animation_4flbx"]
+resource_name = "block"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0044695735, -0.1652838, 0.21634835)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.1981625, -0.20292549, 1.2016187)]
+}
+
+[sub_resource type="Animation" id="Animation_onrkg"]
+resource_name = "idle"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -63,10 +88,50 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.40110874, -0.25104657, 0.14655349), Vector3(0.40110874, -0.24060544, 0.14655352), Vector3(0.40110874, -0.25104657, 0.14655349)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.3759237, 0.26819006, -0.5922647)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../attack_hitbox/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_vi7a4"]
+resource_name = "swing"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.6627159, 0, 0.35113335), Vector3(-0.83771414, -0.27698237, 0.050194025)]
+"values": [Vector3(0.6627159, 0, 0.35113335), Vector3(-0.9866035, -0.27698237, 0.0014801621)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -75,7 +140,7 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-2.5942773e-08, -0.4083372, -1.1420213), Vector3(-0.29771736, 2.8846064, -1.7685505)]
@@ -93,11 +158,16 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lbgu0"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o4apd"]
 _data = {
 &"RESET": SubResource("Animation_ieex1"),
+&"block": SubResource("Animation_4flbx"),
+&"idle": SubResource("Animation_onrkg"),
 &"swing": SubResource("Animation_vi7a4")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_comhj"]
+size = Vector3(2.8, 1, 1.467)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lyhpv"]
 
@@ -127,16 +197,27 @@ transform = Transform3D(1.0000001, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999998, 0, 0
 [node name="MeshInstance3D" type="MeshInstance3D" parent="head/weapon holder/sword" unique_id=358752950]
 mesh = SubResource("BoxMesh_14hdb")
 
-[node name="Area3D" type="Area3D" parent="head/weapon holder/sword" unique_id=1070342826]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="head/weapon holder/sword" unique_id=576082296]
+libraries/ = SubResource("AnimationLibrary_o4apd")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="head/weapon holder/sword/Area3D" unique_id=214504533]
-shape = SubResource("BoxShape3D_kbhp5")
+[node name="attack_hitbox" type="Area3D" parent="head" unique_id=1398647722]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999998, 0, 0, -1)
+collision_layer = 0
+collision_mask = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="head/weapon holder/sword" unique_id=1500419066]
-libraries/ = SubResource("AnimationLibrary_lbgu0")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/attack_hitbox" unique_id=420810026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2336426)
+shape = SubResource("BoxShape3D_comhj")
+disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2125531774]
 shape = SubResource("CapsuleShape3D_lyhpv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=194768895]
 mesh = SubResource("CapsuleMesh_qs5es")
+
+[node name="Timer" type="Timer" parent="." unique_id=175868177]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

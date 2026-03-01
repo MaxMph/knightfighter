@@ -1,9 +1,11 @@
 extends CharacterBody3D
 
 var jump_vel = 6
-var speed = 8
+var speed = 4
 var acc = 20
 var fric = 20
+
+var health = 100
 
 @export var head: Node3D
 @export var cam: Camera3D
@@ -98,10 +100,17 @@ func _on_h_slider_value_changed(value: float) -> void:
 
 func _on_attack_hitbox_body_entered(body: Node3D) -> void:
 	if body.has_method("hit"):
-		if cur_swordState == swordStates.SWINGING:
-			body.hit(self)
+		#if cur_swordState == swordStates.SWINGING:
+		body.hit(self)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "swing":
+		cur_swordState = swordStates.IDLE
+
+func hit(sender):
+	if cur_swordState != swordStates.BLOCKING:
+		health -= 10
+		cur_swordState = swordStates.HIT
+		await get_tree().create_timer(1).timeout
 		cur_swordState = swordStates.IDLE

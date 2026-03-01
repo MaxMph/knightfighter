@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://c2cpxlhtb7udp"]
+
+[ext_resource type="Script" uid="uid://itjggrtgloqn" path="res://player(rigidbody).gd" id="1_tdomp"]
+[ext_resource type="PackedScene" uid="uid://80luihuqynhe" path="res://bow.tscn" id="2_grhfl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5wn8v"]
+
+[node name="player(rigidbody)" type="RigidBody3D" unique_id=2069604680 node_paths=PackedStringArray("head", "cam")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_tdomp")
+head = NodePath("head")
+cam = NodePath("head/cam")
+
+[node name="head" type="Node3D" parent="." unique_id=1854367240]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="cam" type="Camera3D" parent="head" unique_id=1546357117]
+unique_name_in_owner = true
+
+[node name="item holder" type="Node3D" parent="head/cam" unique_id=466753919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="bow" parent="head/cam/item holder" unique_id=442002776 instance=ExtResource("2_grhfl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1592927150]
+shape = SubResource("CapsuleShape3D_5wn8v")
+
+[node name="Control" type="Control" parent="." unique_id=1541462099]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="fps" type="Label" parent="Control" unique_id=803757107]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "fps"
+
+[node name="speed" type="Label" parent="Control" unique_id=466820279]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -113.0
+offset_right = 24.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "speed
+"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://32blvtuppfnm"]
 
-[ext_resource type="Texture2D" uid="uid://di5hkn3y8m4oy" path="res://36_dry grass texture-seamless.jpg" id="1_dsnr4"]
-[ext_resource type="PackedScene" uid="uid://djxa3nujg6fe8" path="res://player.tscn" id="1_dxppu"]
-[ext_resource type="PackedScene" uid="uid://cohjb3h17xr7g" path="res://enemy_try_1.tscn" id="2_gy3sr"]
-[ext_resource type="PackedScene" uid="uid://bpstbwh4pq5u" path="res://enemy_try_2.tscn" id="3_1lwx6"]
+[ext_resource type="Texture2D" uid="uid://di5hkn3y8m4oy" path="res://test 1/36_dry grass texture-seamless.jpg" id="1_dsnr4"]
+[ext_resource type="PackedScene" uid="uid://djxa3nujg6fe8" path="res://test 1/player.tscn" id="1_dxppu"]
+[ext_resource type="PackedScene" uid="uid://cohjb3h17xr7g" path="res://test 1/enemy_try_1.tscn" id="2_gy3sr"]
+[ext_resource type="PackedScene" uid="uid://bpstbwh4pq5u" path="res://test 1/enemy_try_2.tscn" id="3_1lwx6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

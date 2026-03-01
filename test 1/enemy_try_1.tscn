@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cohjb3h17xr7g"]
+
+[ext_resource type="Script" uid="uid://btdeci571jaac" path="res://test 1/enemy_try_1.gd" id="1_ieex1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_056rr"]
+albedo_color = Color(0.83819616, 0.33932495, 0.3340523, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vi7a4"]
+size = Vector3(0.6, 0.4, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ieex1"]
+size = Vector3(0.1, 1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vi7a4"]
+size = Vector3(0.1, 1, 0.1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7yfgk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dfvlk"]
+
+[node name="enemy try 1" type="CharacterBody3D" unique_id=1591658444]
+collision_layer = 3
+script = ExtResource("1_ieex1")
+
+[node name="head" type="Node3D" parent="." unique_id=2097414884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head" unique_id=1545786156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2701453)
+material_override = SubResource("StandardMaterial3D_056rr")
+mesh = SubResource("BoxMesh_vi7a4")
+
+[node name="weapon holder" type="Node3D" parent="head" unique_id=582146347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="sword" type="Node3D" parent="head/weapon holder" unique_id=1654325292]
+transform = Transform3D(0.38157454, 0.83470076, -0.39708373, -0.90947586, 0.415757, 2.5942768e-08, 0.16509041, 0.36113805, 0.9177822, 0.6627159, 0, 0.35113335)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/weapon holder/sword" unique_id=159163827]
+mesh = SubResource("BoxMesh_ieex1")
+
+[node name="Area3D" type="Area3D" parent="head/weapon holder/sword" unique_id=946853830]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/weapon holder/sword/Area3D" unique_id=525179428]
+shape = SubResource("BoxShape3D_vi7a4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1788396848]
+shape = SubResource("CapsuleShape3D_7yfgk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1196995061]
+mesh = SubResource("CapsuleMesh_dfvlk")
