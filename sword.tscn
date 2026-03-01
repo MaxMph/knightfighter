@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://drwglp2hjgy7c"]
+
+[ext_resource type="Script" uid="uid://dymhv1td5pumr" path="res://weapon.gd" id="1_74bdg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e4ynd"]
+size = Vector3(2.8, 1, 1.467)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r76a6"]
+size = Vector3(0.1, 1, 0.1)
+
+[sub_resource type="Animation" id="Animation_dwvek"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon holder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.43258217, -0.4165309, 0.047052357)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("weapon holder:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.52851194, -0.348573, 0.62448406)]
+}
+
+[sub_resource type="Animation" id="Animation_74bdg"]
+resource_name = "block"
+
+[sub_resource type="Animation" id="Animation_e4ynd"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon holder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.43258217, -0.4165309, 0.047052357)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("weapon holder:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.52851194, -0.348573, 0.62448406)]
+}
+
+[sub_resource type="Animation" id="Animation_r76a6"]
+resource_name = "swing"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dwvek"]
+_data = {
+&"RESET": SubResource("Animation_dwvek"),
+&"block": SubResource("Animation_74bdg"),
+&"idle": SubResource("Animation_e4ynd"),
+&"swing": SubResource("Animation_r76a6")
+}
+
+[node name="sword" type="Node3D" unique_id=321634648]
+script = ExtResource("1_74bdg")
+
+[node name="attack_hitbox" type="Area3D" parent="." unique_id=1610710616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.13005674)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="attack_hitbox" unique_id=1188719871]
+shape = SubResource("BoxShape3D_e4ynd")
+disabled = true
+
+[node name="weapon holder" type="Node3D" parent="." unique_id=1118620024]
+transform = Transform3D(0.86317533, -0.40979284, -0.29495433, 0.5049042, 0.7005745, 0.5042488, -5.9604645e-08, -0.58417886, 0.8116248, 0.43258217, -0.4165309, 0.047052357)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="weapon holder" unique_id=1007934786]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0)
+mesh = SubResource("BoxMesh_r76a6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=800112436]
+libraries/ = SubResource("AnimationLibrary_dwvek")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1374177671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)

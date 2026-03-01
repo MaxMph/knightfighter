@@ -13,8 +13,8 @@ var recoil_target: Vector3
 
 var spawn_pos
 
-enum swordStates {SWINGING, STABBING, BLOCKING, PAIRRYING, HIT, NONE}
-var cur_swordState = swordStates.NONE
+enum swordStates {SWINGING, STABBING, BLOCKING, PAIRRYING, HIT, IDLE}
+var cur_swordState = swordStates.IDLE
 
 func _ready() -> void:
 	pass
@@ -56,10 +56,23 @@ func _physics_process(delta: float) -> void:
 	if global_position.y <= -0.858:
 		die()
 
-	if Input.is_action_just_pressed("l_click"):
-		$"head/cam_holder/Camera3D/weapon holder/sword/AnimationPlayer".play("swing")
-		cur_swordState = swordStates.SWINGING
 
+	if Input.is_action_just_pressed("l_click"):
+		#if cur_swordState != swordStates.SWINGING:
+		if cur_swordState == swordStates.IDLE:
+			$"head/cam_holder/Camera3D/weapon holder/sword/AnimationPlayer".play("swing")
+			cur_swordState = swordStates.SWINGING
+	if Input.is_action_pressed("r_click"):
+		if cur_swordState == swordStates.IDLE: #!= swordStates.BLOCKING:
+			$"head/cam_holder/Camera3D/weapon holder/sword/AnimationPlayer".play("block")
+			cur_swordState = swordStates.BLOCKING
+	else:
+		if cur_swordState == swordStates.BLOCKING:
+			cur_swordState = swordStates.IDLE
+	
+	if cur_swordState == swordStates.IDLE:
+		$"head/cam_holder/Camera3D/weapon holder/sword/AnimationPlayer".play("idle")
+	
 	move_and_slide()
 	
 
@@ -87,3 +100,8 @@ func _on_attack_hitbox_body_entered(body: Node3D) -> void:
 	if body.has_method("hit"):
 		if cur_swordState == swordStates.SWINGING:
 			body.hit(self)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "swing":
+		cur_swordState = swordStates.IDLE
