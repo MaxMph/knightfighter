@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bvegv2wucrobr"]
+
+[ext_resource type="Texture2D" uid="uid://lv8w5e3f5hdn" path="res://textures/gray-cement-stone-wall-128x128.png" id="1_ns2ue"]
+
+[resource]
+albedo_color = Color(0.85374206, 0.8416866, 0.77538705, 1)
+albedo_texture = ExtResource("1_ns2ue")
+uv1_scale = Vector3(0.295, 0.295, 0.295)
+uv1_triplanar = true
+texture_filter = 0

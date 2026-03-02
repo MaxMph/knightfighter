@@ -4,7 +4,12 @@ var speed = 40
 var jump_vel = 6
 var health = 100
 
-var max_speed = 20
+var max_speed = 14
+
+var base_fov = 75
+var fov = 75
+var fov_recovery = 2
+var runfov = 0
 
 @export var head: Node3D
 @export var cam: Camera3D
@@ -24,9 +29,21 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	$Control/fps.text = str(Engine.get_frames_per_second())
 	$Control/speed.text = str(roundi(linear_velocity.length()))
+	
+	if fov != base_fov:
+		fov = move_toward(fov, base_fov, delta * fov_recovery)
+	
+	if linear_velocity.length() > 6:
+		#var run_fov_change = (base_fov + linear_velocity.length()) - 6
+		#fov = move_toward(fov, base_fov + linear_velocity.length(), delta * 20)
+		fov = base_fov + (linear_velocity.length() - 6) / 4
+		#fov = base_fov + move_toward(0, linear_velocity.length(), delta * 20)
+	
+	%cam.fov = fov
 
 func _physics_process(delta: float) -> void:
 	
+
 	if Input.is_action_just_pressed("jump"):
 		apply_central_impulse(Vector3.UP * jump_vel)
 	

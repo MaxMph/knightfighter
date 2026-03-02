@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c2yjrq8m34pyd"]
+
+[ext_resource type="Texture2D" uid="uid://xtq0xye5t3i8" path="res://textures/stone-rock-moss-musk-128x128.png" id="1_sbg40"]
+
+[resource]
+albedo_color = Color(0.51462185, 0.51462185, 0.51462185, 1)
+albedo_texture = ExtResource("1_sbg40")

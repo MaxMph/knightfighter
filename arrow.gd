@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
-@export var speed: float = 280.0
+@export var speed: float = 80.0
 @export var drag: float = 1.0
 @export var drop: float = 18.0
+
+var speed_mult
 
 var dmg: float = 10.0
 
@@ -14,6 +16,8 @@ var last_pos
 var sender = null
 
 func _ready() -> void:
+	speed *= speed_mult
+	
 	#ray.collision_mask = 131
 	add_sibling(ray)
 
@@ -30,15 +34,22 @@ func _process(delta: float) -> void:
 	last_pos = position
 	ray.force_raycast_update()
 	
+	$MeshInstance3D.look_at(ray.global_position)
+	#$MeshInstance3D.rotation *= -1
+	#$MeshInstance3D.global_rotation.x = ray.position.angle_to(ray.target_position)
+	
 	#update_trail($trail, ray.global_position, global_position)
 	
 	velocity.y -= drop * delta
 	
 	if ray.is_colliding():
 		if ray.get_collider().has_method("hit"):
-			ray.get_collider().hit(dmg, self)
+			ray.get_collider().hit(self)
 		ray.queue_free()
 		queue_free()
+	
+	#$MeshInstance3D.global_rotation = velocity.angle()
+	#velocity
 	
 	move_and_slide()
 
