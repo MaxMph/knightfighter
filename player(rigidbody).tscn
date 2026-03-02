@@ -7,14 +7,21 @@
 size = Vector3(0.1, 1, 0.1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5wn8v"]
+height = 1.5
 
-[node name="player(rigidbody)" type="RigidBody3D" unique_id=2069604680 node_paths=PackedStringArray("head", "cam")]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_grhfl"]
+height = 1.5
+
+[node name="player(rigidbody)" type="RigidBody3D" unique_id=2069604680 node_paths=PackedStringArray("head", "cam", "floorcast")]
+collision_layer = 2
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
+gravity_scale = 2.0
 script = ExtResource("1_tdomp")
 head = NodePath("head")
 cam = NodePath("head/cam")
+floorcast = NodePath("floorcast")
 
 [node name="head" type="Node3D" parent="." unique_id=1854367240]
 unique_name_in_owner = true
@@ -24,16 +31,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 unique_name_in_owner = true
 
 [node name="item holder" type="Node3D" parent="head/cam" unique_id=466753919]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8354021)
 
 [node name="bow" parent="head/cam/item holder" unique_id=442002776 instance=ExtResource("2_grhfl")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="head/cam/item holder/bow" unique_id=235951340]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22156137, -0.14076173, 0.35986793)
+visible = false
 mesh = SubResource("BoxMesh_grhfl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1592927150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("CapsuleShape3D_5wn8v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=194945629]
+mesh = SubResource("CapsuleMesh_grhfl")
 
 [node name="Control" type="Control" parent="." unique_id=1541462099]
 layout_mode = 3
@@ -67,3 +79,6 @@ text = "speed
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="floorcast" type="RayCast3D" parent="." unique_id=717835614]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45256764, 0)
