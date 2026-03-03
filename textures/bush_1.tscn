@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cjkkhj8kkr3y1"]
+
+[ext_resource type="PackedScene" uid="uid://1cxjs4ud5d7v" path="res://blender files/bush 1.glb" id="1_hgw43"]
+
+[node name="bush 1" unique_id=693806786 instance=ExtResource("1_hgw43")]

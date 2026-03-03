@@ -5,18 +5,19 @@
 [ext_resource type="PackedScene" uid="uid://c2cpxlhtb7udp" path="res://player(rigidbody).tscn" id="2_x1iep"]
 [ext_resource type="Material" uid="uid://bvegv2wucrobr" path="res://textures/wall 1.tres" id="4_il0tq"]
 [ext_resource type="PackedScene" uid="uid://ceh25yxv18a7c" path="res://jumpad.tscn" id="5_gscbt"]
+[ext_resource type="Script" uid="uid://cffoghte50goi" path="res://gravpull 1.gd" id="6_i0wba"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_il0tq"]
 sky_top_color = Color(0.44314754, 0.44842905, 0.46292323, 1)
 sky_horizon_color = Color(0.6688101, 0.6700921, 0.6735941, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_gy3sr"]
+[sub_resource type="Sky" id="Sky_i0wba"]
 sky_material = SubResource("ProceduralSkyMaterial_il0tq")
 
 [sub_resource type="Environment" id="Environment_gscbt"]
 background_mode = 2
-sky = SubResource("Sky_gy3sr")
+sky = SubResource("Sky_i0wba")
 tonemap_mode = 2
 glow_enabled = true
 fog_enabled = true
@@ -35,16 +36,13 @@ texture_filter = 0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gscbt"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ff24s"]
+size = Vector3(8, 200, 8)
+
 [node name="test_world_2" type="Node3D" unique_id=649027637]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=622290833]
 environment = SubResource("Environment_gscbt")
-
-[node name="sentry golem" parent="WorldEnvironment" unique_id=1655381980 instance=ExtResource("1_x1iep")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -19.467388)
-
-[node name="sentry golem2" parent="WorldEnvironment" unique_id=612677772 instance=ExtResource("1_x1iep")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 18.532612)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1580611123]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -368,3 +366,22 @@ shape = SubResource("WorldBoundaryShape3D_gscbt")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=2005687184]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -3.0188599, 25, 45)
 shape = SubResource("WorldBoundaryShape3D_gscbt")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1655773695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 63, 0.773)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("6_i0wba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=603927433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.290054, 0)
+shape = SubResource("BoxShape3D_ff24s")
+
+[node name="sentry golem" parent="." unique_id=1655381980 instance=ExtResource("1_x1iep")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -19.467388)
+
+[node name="sentry golem2" parent="." unique_id=612677772 instance=ExtResource("1_x1iep")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 18.532612)
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

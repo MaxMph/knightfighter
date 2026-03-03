@@ -48,6 +48,9 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	speed_lines(delta)
+	
+	if linear_velocity.y < -60:
+		linear_velocity.y = -70
 
 	if Input.is_action_just_pressed("jump"):
 		if linear_velocity.y < 0:

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ckgv0vbv2eoet"]
+
+[ext_resource type="FontFile" uid="uid://b1rf5orqmetlx" path="res://textures/Canterbury.ttf" id="1_06t4h"]
+[ext_resource type="PackedScene" uid="uid://hmt21fqfe47n" path="res://menu_backround_1.tscn" id="2_7vrkn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
+font = ExtResource("1_06t4h")
+font_size = 24
+
+[node name="main menu" type="Control" unique_id=1845032660]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=238176506]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -51.5
+offset_right = 48.5
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1304527176]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1527483514]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1582718383]
+layout_mode = 2
+text = "Rootstone"
+label_settings = SubResource("LabelSettings_7vrkn")
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=643785874]
+layout_mode = 2
+text = "Start"
+
+[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=453113873]
+layout_mode = 2
+text = "Quit"
+
+[node name="menu backround 1" parent="." unique_id=1309853883 instance=ExtResource("2_7vrkn")]
