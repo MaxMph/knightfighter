@@ -43,10 +43,11 @@ func _process(delta: float) -> void:
 	
 	use_floorcast(delta)
 	
+	
 	%cam.fov = fov
 
 func _physics_process(delta: float) -> void:
-	
+	speed_lines(delta)
 
 	if Input.is_action_just_pressed("jump"):
 		if linear_velocity.y < 0:
@@ -56,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		print("Jump")
 	
 	
-	var damp := 4.0  # same value you'd use for linear_damp
+	var damp := 4.0
 	var factor = max(0.0, 1.0 - damp * delta)
 	var v := linear_velocity
 	v.x *= factor
@@ -79,6 +80,13 @@ func _physics_process(delta: float) -> void:
 		#velocity.x = move_toward(velocity.x, 0, fric * delta)
 		#velocity.z = move_toward(velocity.z, 0, fric * delta)
 
+func speed_lines(delta):
+	var line_intensity
+	#if linear_velocity.length() > 10:
+		#line_intensity = (linear_velocity.length() - 10) / 10
+	line_intensity = linear_velocity.length() / 100
+	line_intensity = clamp(0.8 - line_intensity, 0.5 , 1.0)
+	$"Control/speed lines".material.set_shader_parameter("mask_edge", line_intensity)
 
 func use_floorcast(delta):
 	if floorcast.is_colliding():

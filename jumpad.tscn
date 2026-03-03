@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ceh25yxv18a7c"]
+
+[ext_resource type="Script" uid="uid://dogev44sioi04" path="res://jumpad.gd" id="1_xtwty"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kl1na"]
+size = Vector3(1, 1.2137451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kl1na"]
+size = Vector3(1, 0.4, 1)
+
+[node name="jumpad" type="Node3D" unique_id=23396437]
+script = ExtResource("1_xtwty")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1876993516]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1570157061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40687257, 0)
+shape = SubResource("BoxShape3D_kl1na")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=820416088]
+mesh = SubResource("BoxMesh_kl1na")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

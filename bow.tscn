@@ -109,6 +109,9 @@ bind/17/name = &"Bone.016"
 bind/17/bone = -1
 bind/17/pose = Transform3D(-1.0000001, 7.105428e-15, 0, 0, 0, 1.0000001, 7.105428e-15, 1.0000001, 0, 0, -0.25456095, 0)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60xqc"]
+emission_enabled = true
+
 [node name="bow" type="Node3D" unique_id=442002776]
 script = ExtResource("1_2l2of")
 arrow = ExtResource("2_2of8d")
@@ -147,7 +150,7 @@ grow_vertical = 2
 show_percentage = false
 
 [node name="Armature" type="Node3D" parent="." unique_id=1756874709]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.28610277, 0, 0)
+transform = Transform3D(0.4502812, 0.39654356, 0, -0.3965435, 0.45028126, 0, 0, 0, 0.59999996, 0.6123202, -0.06343636, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=197305378]
 bones/0/name = "Bone.017"
@@ -278,10 +281,12 @@ bones/17/rotation = Quaternion(-0.7071067, 0, 0.7071068, 0)
 bones/17/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
 
 [node name="Cube" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=1489091569]
+transform = Transform3D(0.99999994, 2.9802322e-08, 0, -1.9605587e-10, 0.99999994, 2.0129098e-09, 3.7252903e-09, 0, 0.99999994, 0, 0, 0)
 mesh = SubResource("ArrayMesh_2of8d")
 skin = SubResource("Skin_60xqc")
 skeleton = NodePath("..")
 surface_material_override/0 = ExtResource("3_60xqc")
+surface_material_override/1 = SubResource("StandardMaterial3D_60xqc")
 
 [node name="FABRIK3D" type="FABRIK3D" parent="Armature/Skeleton3D" unique_id=2111448947]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -292,3 +297,5 @@ settings/0/root_bone = 1
 settings/0/end_bone_name = ""
 settings/0/end_bone = -1
 settings/0/joint_count = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=444333111]

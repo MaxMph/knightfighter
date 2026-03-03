@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://itjggrtgloqn" path="res://player(rigidbody).gd" id="1_tdomp"]
 [ext_resource type="PackedScene" uid="uid://80luihuqynhe" path="res://bow.tscn" id="2_grhfl"]
+[ext_resource type="Shader" uid="uid://c1552vry81var" path="res://textures/speedlines 1.gdshader" id="3_h2puo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_grhfl"]
 size = Vector3(0.1, 1, 0.1)
@@ -11,6 +12,24 @@ height = 1.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_grhfl"]
 height = 1.5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h2puo"]
+noise_type = 2
+frequency = 0.6786
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_johkg"]
+noise = SubResource("FastNoiseLite_h2puo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_johkg"]
+shader = ExtResource("3_h2puo")
+shader_parameter/noise = SubResource("NoiseTexture2D_johkg")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_count = 0.5
+shader_parameter/line_density = 0.50000002375
+shader_parameter/line_faloff = 1.0
+shader_parameter/mask_size = 0.1
+shader_parameter/mask_edge = 0.654000031065
+shader_parameter/animation_speed = 16.0000007125
 
 [node name="player(rigidbody)" type="RigidBody3D" unique_id=2069604680 node_paths=PackedStringArray("head", "cam", "floorcast")]
 collision_layer = 2
@@ -79,6 +98,16 @@ text = "speed
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="speed lines" type="ColorRect" parent="Control" unique_id=2039963662]
+material = SubResource("ShaderMaterial_johkg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="floorcast" type="RayCast3D" parent="." unique_id=717835614]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45256764, 0)
