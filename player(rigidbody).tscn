@@ -31,7 +31,7 @@ shader_parameter/mask_size = 0.1
 shader_parameter/mask_edge = 0.654000031065
 shader_parameter/animation_speed = 16.0000007125
 
-[node name="player(rigidbody)" type="RigidBody3D" unique_id=2069604680 node_paths=PackedStringArray("head", "cam", "floorcast")]
+[node name="player(rigidbody)" type="RigidBody3D" unique_id=2069604680 node_paths=PackedStringArray("head", "cam", "floorcast") groups=["player"]]
 collision_layer = 2
 axis_lock_angular_x = true
 axis_lock_angular_y = true

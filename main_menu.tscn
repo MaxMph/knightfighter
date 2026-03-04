@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://ckgv0vbv2eoet"]
 
 [ext_resource type="FontFile" uid="uid://b1rf5orqmetlx" path="res://textures/Canterbury.ttf" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://b4irq81ma381i" path="res://main_menu.gd" id="1_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://hmt21fqfe47n" path="res://menu_backround_1.tscn" id="2_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://chhmqgjs82py3" path="res://test_world_2.tscn" id="2_jix8l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
 font = ExtResource("1_06t4h")
@@ -14,6 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fu7sn")
+next_scene = ExtResource("2_jix8l")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=238176506]
 layout_mode = 1
@@ -45,12 +49,15 @@ layout_mode = 2
 text = "Rootstone"
 label_settings = SubResource("LabelSettings_7vrkn")
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=643785874]
+[node name="start" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=643785874]
 layout_mode = 2
 text = "Start"
 
-[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=453113873]
+[node name="quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=453113873]
 layout_mode = 2
 text = "Quit"
 
 [node name="menu backround 1" parent="." unique_id=1309853883 instance=ExtResource("2_7vrkn")]
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

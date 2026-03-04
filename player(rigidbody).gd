@@ -1,7 +1,7 @@
 extends RigidBody3D
 
 var speed = 80
-var jump_vel = 18
+var jump_vel = 16
 var health = 100
 
 var max_speed = 18

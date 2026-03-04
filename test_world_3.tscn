@@ -1,0 +1,269 @@
+[gd_scene format=3 uid="uid://rlipxginvru3"]
+
+[ext_resource type="Script" uid="uid://b8xsyawbwgus2" path="res://enemy 2.gd" id="1_vnhvt"]
+[ext_resource type="PackedScene" uid="uid://caoovct7q0uvf" path="res://enemies/bullets/bullet_type_1.tscn" id="2_4nmvg"]
+[ext_resource type="Texture2D" uid="uid://dycup875smcna" path="res://textures/green-weeds-128x128.png" id="2_fxs6q"]
+[ext_resource type="PackedScene" uid="uid://c2cpxlhtb7udp" path="res://player(rigidbody).tscn" id="3_4nmvg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iqxaf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vnhvt"]
+
+[sub_resource type="Animation" id="Animation_4nmvg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i5e2s"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fr6fq"]
+_data = {
+&"RESET": SubResource("Animation_4nmvg"),
+&"loop": SubResource("Animation_i5e2s")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5e2s"]
+albedo_color = Color(0.6750633, 0.53443897, 0.71704096, 1)
+albedo_texture = ExtResource("2_fxs6q")
+uv1_scale = Vector3(0.42, 0.42, 0.42)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fxs6q"]
+sky_top_color = Color(0.44314754, 0.44842905, 0.46292323, 1)
+sky_horizon_color = Color(0.6688101, 0.6700921, 0.6735941, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_gy3sr"]
+sky_material = SubResource("ProceduralSkyMaterial_fxs6q")
+
+[sub_resource type="Environment" id="Environment_4nmvg"]
+background_mode = 2
+sky = SubResource("Sky_gy3sr")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_density = 0.002
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.78063464, 0.8464339, 0.93112576, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i5e2s"]
+emission_shape_offset = Vector3(0, 10, 0)
+emission_shape = 3
+emission_box_extents = Vector3(28, 4, 28)
+direction = Vector3(1, -1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.8
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0jh8"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.8980392, 0.8235294, 0.77254903, 0.20392157)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fr6fq"]
+material = SubResource("StandardMaterial3D_m0jh8")
+radius = 0.05
+height = 0.1
+radial_segments = 16
+rings = 8
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_50kdo"]
+emission_shape_offset = Vector3(0, -10, 0)
+emission_shape = 3
+emission_box_extents = Vector3(28, 4, 28)
+direction = Vector3(1, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.8
+gravity = Vector3(0, 0, 0)
+
+[node name="test world 3" type="Node3D" unique_id=819931167]
+
+[node name="enemy" type="StaticBody3D" parent="." unique_id=1955736674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -11)
+script = ExtResource("1_vnhvt")
+bullet_scene = ExtResource("2_4nmvg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy" unique_id=504214789]
+shape = SubResource("SphereShape3D_iqxaf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy" unique_id=1556952245]
+mesh = SubResource("SphereMesh_vnhvt")
+
+[node name="spawner" type="Node3D" parent="enemy" unique_id=1782154474]
+
+[node name="enemy2" type="StaticBody3D" parent="." unique_id=20294278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 9)
+script = ExtResource("1_vnhvt")
+bullet_scene = ExtResource("2_4nmvg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy2" unique_id=995552144]
+shape = SubResource("SphereShape3D_iqxaf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy2" unique_id=919936477]
+mesh = SubResource("SphereMesh_vnhvt")
+
+[node name="spawner" type="Node3D" parent="enemy2" unique_id=35838833]
+
+[node name="enemy 3 pivot" type="Node3D" parent="." unique_id=1831700053]
+
+[node name="enemy3" type="StaticBody3D" parent="enemy 3 pivot" unique_id=980327941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 0)
+script = ExtResource("1_vnhvt")
+bullet_scene = ExtResource("2_4nmvg")
+shootspeed = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy 3 pivot/enemy3" unique_id=533742717]
+shape = SubResource("SphereShape3D_iqxaf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy 3 pivot/enemy3" unique_id=914785696]
+mesh = SubResource("SphereMesh_vnhvt")
+
+[node name="spawner" type="Node3D" parent="enemy 3 pivot/enemy3" unique_id=927351712]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy 3 pivot/enemy3" unique_id=1420146332]
+libraries/ = SubResource("AnimationLibrary_fr6fq")
+autoplay = &"loop"
+speed_scale = 0.1
+
+[node name="enemy3" type="StaticBody3D" parent="." unique_id=386333147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.3968887, -11)
+script = ExtResource("1_vnhvt")
+bullet_scene = ExtResource("2_4nmvg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy3" unique_id=2036468729]
+shape = SubResource("SphereShape3D_iqxaf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy3" unique_id=1573007107]
+mesh = SubResource("SphereMesh_vnhvt")
+
+[node name="spawner" type="Node3D" parent="enemy3" unique_id=935391779]
+
+[node name="enemy4" type="StaticBody3D" parent="." unique_id=485785646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.3968887, 9)
+script = ExtResource("1_vnhvt")
+bullet_scene = ExtResource("2_4nmvg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy4" unique_id=1325374103]
+shape = SubResource("SphereShape3D_iqxaf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy4" unique_id=84214305]
+mesh = SubResource("SphereMesh_vnhvt")
+
+[node name="spawner" type="Node3D" parent="enemy4" unique_id=242564831]
+
+[node name="enemy 3 pivot2" type="Node3D" parent="." unique_id=501794592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3968887, 0)
+
+[node name="enemy3" type="StaticBody3D" parent="enemy 3 pivot2" unique_id=1798792142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 0)
+script = ExtResource("1_vnhvt")
+bullet_scene = ExtResource("2_4nmvg")
+shootspeed = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy 3 pivot2/enemy3" unique_id=413151532]
+shape = SubResource("SphereShape3D_iqxaf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy 3 pivot2/enemy3" unique_id=611651332]
+mesh = SubResource("SphereMesh_vnhvt")
+
+[node name="spawner" type="Node3D" parent="enemy 3 pivot2/enemy3" unique_id=700210230]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy 3 pivot2/enemy3" unique_id=1461996581]
+libraries/ = SubResource("AnimationLibrary_fr6fq")
+autoplay = &"loop"
+speed_scale = 0.1
+
+[node name="player(rigidbody)" parent="." unique_id=2069604680 instance=ExtResource("3_4nmvg")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1542482046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.663895, 0)
+material_override = SubResource("StandardMaterial3D_i5e2s")
+use_collision = true
+size = Vector3(80, 15, 80)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=946730035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3245678, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_i5e2s")
+flip_faces = true
+size = Vector3(80, 15, 80)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1232626160]
+environment = SubResource("Environment_4nmvg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1292971653]
+transform = Transform3D(0.20006916, -0.848516, 0.4898908, 2.7805946e-08, 0.49999994, 0.86602545, -0.97978175, -0.17326498, 0.10003455, 0, 0, 0)
+light_color = Color(0.93996096, 0.88560134, 0.8299013, 1)
+light_energy = 0.8
+shadow_enabled = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1733275622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -5)
+amount = 200
+lifetime = 60.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_i5e2s")
+draw_pass_1 = SubResource("SphereMesh_fr6fq")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=1628426794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8275318, -5)
+amount = 200
+lifetime = 60.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_50kdo")
+draw_pass_1 = SubResource("SphereMesh_fr6fq")
+
+[node name="enemy5" type="StaticBody3D" parent="." unique_id=913194835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 3)
+script = ExtResource("1_vnhvt")
+bullet_scene = ExtResource("2_4nmvg")
+follow_shooting = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy5" unique_id=1795442408]
+shape = SubResource("SphereShape3D_iqxaf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy5" unique_id=693193205]
+mesh = SubResource("SphereMesh_vnhvt")
+
+[node name="spawner" type="Node3D" parent="enemy5" unique_id=1916536291]
+
+[node name="enemy6" type="StaticBody3D" parent="." unique_id=748504203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 13)
+script = ExtResource("1_vnhvt")
+bullet_scene = ExtResource("2_4nmvg")
+follow_shooting = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy6" unique_id=723790662]
+shape = SubResource("SphereShape3D_iqxaf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy6" unique_id=1934492085]
+mesh = SubResource("SphereMesh_vnhvt")
+
+[node name="spawner" type="Node3D" parent="enemy6" unique_id=639099275]
