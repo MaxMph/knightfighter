@@ -1,6 +1,7 @@
-extends StaticBody3D
+extends Node3D
 
 @export var bullet_scene: PackedScene
+@export var bullet_speed = 4
 
 @export var random_shooting = false
 @export var forward_shooting = false
@@ -45,6 +46,7 @@ func bullet_call(type, interval):
 
 func spiral(bullet):
 	var new_bullet = bullet_scene.instantiate()
+	new_bullet.speed = bullet_speed
 	new_bullet.global_position = global_position
 	new_bullet.rotation_degrees.y = time * spiral_speed
 	#new_bullet.rotation_degrees = Vector3(randf_range(-60, 60), randf_range(-180, 180), randf_range(-60, 60))
@@ -53,14 +55,17 @@ func spiral(bullet):
 
 func follow(bullet):
 	var new_bullet = bullet_scene.instantiate()
+	new_bullet.speed = bullet_speed
 	new_bullet.global_position = global_position
 	#new_bullet.rotation = global_position.direction_to(get_tree().get_first_node_in_group("player").global_position)
 	
 	get_tree().root.add_child(new_bullet)
-	new_bullet.look_at(get_tree().get_first_node_in_group("player").global_position)
+	if get_tree().get_first_node_in_group("player").global_position != null:
+		new_bullet.look_at(get_tree().get_first_node_in_group("player").global_position)
 
 func random(bullet):
 	var new_bullet = bullet_scene.instantiate()
+	new_bullet.speed = bullet_speed
 	#new_bullet.rotation_degrees = Vector3(randf_range(-180, 180), randf_range(-180, 180), randf_range(-180, 180))
 	#new_bullet.global_rotation.y = randi()
 	#new_bullet.rotation_degrees = Vector3(randf_range(-180, 180), randf_range(-180, 180), randf_range(-180, 180))
@@ -72,6 +77,7 @@ func random(bullet):
 
 func forward(bullet):
 	var new_bullet = bullet_scene.instantiate()
+	new_bullet.speed = bullet_speed
 	new_bullet.global_position = global_position
 	new_bullet.rotation = global_rotation
 	#new_bullet.rotation_degrees = Vector3(randf_range(-60, 60), randf_range(-180, 180), randf_range(-60, 60))

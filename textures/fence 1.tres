@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://smyf5gai8hnw"]
+
+[ext_resource type="Texture2D" uid="uid://dxcen83y2rrln" path="res://textures/vector_wire_chainlink_fence_pattern-removebg-preview.png" id="1_2kr1l"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.214
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_2kr1l")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true
+uv1_world_triplanar = true

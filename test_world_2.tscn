@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://bvegv2wucrobr" path="res://textures/wall 1.tres" id="4_il0tq"]
 [ext_resource type="PackedScene" uid="uid://ceh25yxv18a7c" path="res://jumpad.tscn" id="5_gscbt"]
 [ext_resource type="Script" uid="uid://cffoghte50goi" path="res://gravpull 1.gd" id="6_i0wba"]
+[ext_resource type="Material" uid="uid://smyf5gai8hnw" path="res://textures/fence 1.tres" id="7_ff24s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_il0tq"]
 sky_top_color = Color(0.44314754, 0.44842905, 0.46292323, 1)
@@ -34,10 +35,43 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 texture_filter = 0
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i0wba"]
+emission_shape_offset = Vector3(0, 10, 0)
+emission_shape = 3
+emission_box_extents = Vector3(28, 4, 28)
+direction = Vector3(1, -1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.8
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0jh8"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.8980392, 0.8235294, 0.77254903, 0.20392157)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ff24s"]
+material = SubResource("StandardMaterial3D_m0jh8")
+radius = 0.05
+height = 0.1
+radial_segments = 16
+rings = 8
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pqskb"]
+emission_shape_offset = Vector3(0, -10, 0)
+emission_shape = 3
+emission_box_extents = Vector3(28, 4, 28)
+direction = Vector3(1, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.8
+gravity = Vector3(0, 0, 0)
+
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gscbt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ff24s"]
 size = Vector3(8, 200, 8)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5awxr"]
+size = Vector2(100, 280)
 
 [node name="test_world_2" type="Node3D" unique_id=649027637]
 
@@ -55,6 +89,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.5, 0)
 material_override = SubResource("StandardMaterial3D_gscbt")
 use_collision = true
 size = Vector3(80, 26, 80)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="CSGBox3D" unique_id=1272671547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79, -5)
+amount = 200
+lifetime = 60.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_i0wba")
+draw_pass_1 = SubResource("SphereMesh_ff24s")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="CSGBox3D" unique_id=731723384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8275318, -5)
+amount = 200
+lifetime = 60.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_pqskb")
+draw_pass_1 = SubResource("SphereMesh_ff24s")
 
 [node name="CSGBox3D29" type="CSGBox3D" parent="." unique_id=174204191]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -46.5, 0)
@@ -215,7 +265,7 @@ use_collision = true
 size = Vector3(10, 40, 105)
 
 [node name="CSGBox3D25" type="CSGBox3D" parent="." unique_id=889742985]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 322, -11.717651, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 238.67627, -11.717651, -0.5)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(218, 200, 452)
@@ -245,37 +295,37 @@ use_collision = true
 size = Vector3(218, 402, 241)
 
 [node name="CSGBox3D27" type="CSGBox3D" parent="." unique_id=182201221]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -311, -11.717651, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -245, -11.717651, -0.5)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(196, 200, 452)
 
 [node name="CSGBox3D34" type="CSGBox3D" parent="." unique_id=792385729]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -571, 182.28235, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -505, 182.28235, -10)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(196, 588, 1169)
 
 [node name="CSGBox3D38" type="CSGBox3D" parent="." unique_id=1536776285]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -378, 173.28235, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -312, 173.28235, -10)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(112, 60, 1169)
 
 [node name="CSGBox3D39" type="CSGBox3D" parent="." unique_id=480092397]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 387.08984, 173.28235, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 303.7661, 173.28235, -10)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(112, 60, 1169)
 
 [node name="CSGBox3D40" type="CSGBox3D" parent="." unique_id=858235554]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27.910156, 173.28235, -428)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27.910156, 173.28235, -341)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(112, 60, 1169)
 
 [node name="CSGBox3D41" type="CSGBox3D" parent="." unique_id=544863764]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27.910156, 173.28235, 398)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -27.910156, 173.28235, 316.25107)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(112, 60, 1169)
@@ -299,31 +349,31 @@ use_collision = true
 size = Vector3(100, 292.82855, 100)
 
 [node name="CSGBox3D37" type="CSGBox3D" parent="." unique_id=1820633050]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 519, 182.28235, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 435.67627, 182.28235, -10)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(196, 588, 1169)
 
 [node name="CSGBox3D35" type="CSGBox3D" parent="." unique_id=290466201]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 182.28235, -560)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 182.28235, -473)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(196, 588, 1169)
 
 [node name="CSGBox3D36" type="CSGBox3D" parent="." unique_id=838219661]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 182.28235, 543)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 182.28235, 461.25107)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(196, 588, 1169)
 
 [node name="CSGBox3D26" type="CSGBox3D" parent="." unique_id=1774615339]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.4202123e-06, -11.717651, -353.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.4202123e-06, -11.717651, -266.5)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(258, 200, 452)
 
 [node name="CSGBox3D28" type="CSGBox3D" parent="." unique_id=1041711170]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.1579436e-06, -11.717651, 338.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.1579436e-06, -11.717651, 256.75107)
 material_override = ExtResource("4_il0tq")
 use_collision = true
 size = Vector3(246, 200, 452)
@@ -386,6 +436,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -19.467388)
 
 [node name="sentry golem2" parent="." unique_id=612677772 instance=ExtResource("1_x1iep")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 18.532612)
+
+[node name="fence" type="Node3D" parent="." unique_id=1378619182]
+
+[node name="fence" type="MeshInstance3D" parent="fence" unique_id=1193324362]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 152, 43.970352)
+material_override = ExtResource("7_ff24s")
+mesh = SubResource("PlaneMesh_5awxr")
+
+[node name="fence2" type="MeshInstance3D" parent="fence" unique_id=1182706373]
+transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 0, 152, -43.97)
+material_override = ExtResource("7_ff24s")
+mesh = SubResource("PlaneMesh_5awxr")
+
+[node name="fence3" type="MeshInstance3D" parent="fence" unique_id=885614056]
+transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 46.60815, 152, 0)
+material_override = ExtResource("7_ff24s")
+mesh = SubResource("PlaneMesh_5awxr")
+
+[node name="fence4" type="MeshInstance3D" parent="fence" unique_id=753848855]
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, -46.608, 152, 0)
+material_override = ExtResource("7_ff24s")
+mesh = SubResource("PlaneMesh_5awxr")
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

@@ -55,6 +55,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		if linear_velocity.y < 0:
 			linear_velocity.y = 0
+		
+		if floorcast.is_colliding() and linear_velocity.y < 6:
+			linear_velocity.y = 0
 		#apply_central_impulse(Vector3.UP * jump_vel)
 		linear_velocity.y += jump_vel
 		print("Jump")

@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://dsdvw3i1v3vrd"]
+
+[ext_resource type="Material" uid="uid://bvegv2wucrobr" path="res://textures/wall 1.tres" id="1_1r0hw"]
+[ext_resource type="PackedScene" uid="uid://c2cpxlhtb7udp" path="res://player(rigidbody).tscn" id="2_llelv"]
+[ext_resource type="Script" uid="uid://b6m35tsv4x68c" path="res://slam_enemy.gd" id="3_c86tl"]
+[ext_resource type="Material" uid="uid://smyf5gai8hnw" path="res://textures/fence 1.tres" id="3_llelv"]
+[ext_resource type="Script" uid="uid://dlhlgves7m43x" path="res://enemies/sentry golem 1/outer orb.gd" id="5_c86tl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w3nvc"]
+sky_top_color = Color(0.44314754, 0.44842905, 0.46292323, 1)
+sky_horizon_color = Color(0.6688101, 0.6700921, 0.6735941, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_gy3sr"]
+sky_material = SubResource("ProceduralSkyMaterial_w3nvc")
+
+[sub_resource type="Environment" id="Environment_4x64m"]
+background_mode = 2
+sky = SubResource("Sky_gy3sr")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_density = 0.002
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.78063464, 0.8464339, 0.93112576, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sga3f"]
+emission_shape_offset = Vector3(0, 10, 0)
+emission_shape = 3
+emission_box_extents = Vector3(28, 4, 28)
+direction = Vector3(1, -1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.8
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nmvg"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.8980392, 0.8235294, 0.77254903, 0.20392157)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vubwu"]
+material = SubResource("StandardMaterial3D_4nmvg")
+radius = 0.05
+height = 0.1
+radial_segments = 16
+rings = 8
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_krxw3"]
+emission_shape_offset = Vector3(0, -10, 0)
+emission_shape = 3
+emission_box_extents = Vector3(28, 4, 28)
+direction = Vector3(1, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.8
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1r0hw"]
+size = Vector3(4, 12, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c86tl"]
+lightmap_size_hint = Vector2i(44, 146)
+size = Vector3(4, 12, 4)
+
+[sub_resource type="Animation" id="Animation_fr6fq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_50kdo"]
+resource_name = "slam"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [null],
+"method": &"spawn"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_csmu1"]
+_data = {
+&"RESET": SubResource("Animation_fr6fq"),
+&"slam": SubResource("Animation_50kdo")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w3nvc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4x64m"]
+
+[node name="test chamber 2" type="Node3D" unique_id=1263757951]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=621026656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.663895, 0)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(80, 15, 80)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1932908232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3245678, 0)
+material_override = ExtResource("1_1r0hw")
+flip_faces = true
+size = Vector3(50, 15, 50)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=743599674]
+environment = SubResource("Environment_4x64m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=719839087]
+transform = Transform3D(0.20006916, -0.848516, 0.4898908, 2.7805946e-08, 0.49999994, 0.86602545, -0.97978175, -0.17326498, 0.10003455, 0, 0, 0)
+visible = false
+light_color = Color(0.93996096, 0.88560134, 0.8299013, 1)
+light_energy = 0.8
+shadow_enabled = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=514422162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -5)
+amount = 200
+lifetime = 60.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_sga3f")
+draw_pass_1 = SubResource("SphereMesh_vubwu")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=268485082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8275318, -5)
+amount = 200
+lifetime = 60.0
+preprocess = 20.0
+process_material = SubResource("ParticleProcessMaterial_krxw3")
+draw_pass_1 = SubResource("SphereMesh_vubwu")
+
+[node name="player(rigidbody)" parent="." unique_id=2069604680 instance=ExtResource("2_llelv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=246404158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19288361, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1034957034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.0984154, 0)
+shape = SubResource("BoxShape3D_1r0hw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1214785719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+material_override = ExtResource("3_llelv")
+mesh = SubResource("BoxMesh_c86tl")
+
+[node name="slam enemy" type="Node3D" parent="." unique_id=1263333422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19288361, 0)
+script = ExtResource("3_c86tl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="slam enemy" unique_id=1879046227]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="slam enemy" unique_id=1601796435]
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(2, 2, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="slam enemy/CSGBox3D" unique_id=1124642269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.661413, 0)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(0.6, 13, 0.6)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="slam enemy" unique_id=778614626]
+libraries/ = SubResource("AnimationLibrary_csmu1")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1571321900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 1.9850488)
+script = ExtResource("5_c86tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=889119816]
+shape = SubResource("SphereShape3D_w3nvc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=425244732]
+mesh = SubResource("SphereMesh_4x64m")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=464954712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -2.0149512)
+script = ExtResource("5_c86tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=1420976458]
+shape = SubResource("SphereShape3D_w3nvc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=466396579]
+mesh = SubResource("SphereMesh_4x64m")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=7933626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, -0.014951229)
+script = ExtResource("5_c86tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=1092437012]
+shape = SubResource("SphereShape3D_w3nvc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4" unique_id=1934243758]
+mesh = SubResource("SphereMesh_4x64m")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="." unique_id=61310764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -0.014951229)
+script = ExtResource("5_c86tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" unique_id=1196421179]
+shape = SubResource("SphereShape3D_w3nvc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D5" unique_id=1604795163]
+mesh = SubResource("SphereMesh_4x64m")

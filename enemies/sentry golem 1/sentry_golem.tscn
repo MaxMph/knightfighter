@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://dlhlgves7m43x" path="res://enemies/sentry golem 1/outer orb.gd" id="2_gj53f"]
 [ext_resource type="Material" uid="uid://bvegv2wucrobr" path="res://textures/wall 1.tres" id="2_jvoef"]
 [ext_resource type="Material" uid="uid://c2yjrq8m34pyd" path="res://textures/core 1.tres" id="4_77i12"]
+[ext_resource type="Script" uid="uid://b8xsyawbwgus2" path="res://enemy 2.gd" id="5_hmjrk"]
+[ext_resource type="PackedScene" uid="uid://cynhnud4gljmh" path="res://enemies/bullets/tracking_bullet.tscn" id="6_hmjrk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xqylj"]
 size = Vector3(3.3, 7.26, 3.3)
@@ -137,6 +139,13 @@ shape = SubResource("SphereShape3D_rrpj1")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="core" unique_id=1844512283]
 material_override = ExtResource("4_77i12")
 mesh = SubResource("SphereMesh_xqylj")
+
+[node name="shooter" type="Node3D" parent="core" unique_id=261720058]
+script = ExtResource("5_hmjrk")
+bullet_scene = ExtResource("6_hmjrk")
+bullet_speed = 8
+forward_shooting = true
+shootspeed = 0.4
 
 [node name="outer orbs" type="Node3D" parent="." unique_id=250441587]
 

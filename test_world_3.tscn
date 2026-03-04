@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://caoovct7q0uvf" path="res://enemies/bullets/bullet_type_1.tscn" id="2_4nmvg"]
 [ext_resource type="Texture2D" uid="uid://dycup875smcna" path="res://textures/green-weeds-128x128.png" id="2_fxs6q"]
 [ext_resource type="PackedScene" uid="uid://c2cpxlhtb7udp" path="res://player(rigidbody).tscn" id="3_4nmvg"]
+[ext_resource type="Script" uid="uid://b6m35tsv4x68c" path="res://slam_enemy.gd" id="5_fr6fq"]
+[ext_resource type="Material" uid="uid://bvegv2wucrobr" path="res://textures/wall 1.tres" id="5_i5e2s"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iqxaf"]
 
@@ -82,13 +84,13 @@ initial_velocity_min = 0.5
 initial_velocity_max = 1.8
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0jh8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nmvg"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(0.8980392, 0.8235294, 0.77254903, 0.20392157)
 
 [sub_resource type="SphereMesh" id="SphereMesh_fr6fq"]
-material = SubResource("StandardMaterial3D_m0jh8")
+material = SubResource("StandardMaterial3D_4nmvg")
 radius = 0.05
 height = 0.1
 radial_segments = 16
@@ -103,10 +105,61 @@ initial_velocity_min = 0.5
 initial_velocity_max = 1.8
 gravity = Vector3(0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_fr6fq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_50kdo"]
+resource_name = "slam"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [null],
+"method": &"spawn"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x6dyj"]
+_data = {
+&"RESET": SubResource("Animation_fr6fq"),
+&"slam": SubResource("Animation_50kdo")
+}
+
 [node name="test world 3" type="Node3D" unique_id=819931167]
 
 [node name="enemy" type="StaticBody3D" parent="." unique_id=1955736674]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, 0)
 script = ExtResource("1_vnhvt")
 bullet_scene = ExtResource("2_4nmvg")
 
@@ -118,20 +171,8 @@ mesh = SubResource("SphereMesh_vnhvt")
 
 [node name="spawner" type="Node3D" parent="enemy" unique_id=1782154474]
 
-[node name="enemy2" type="StaticBody3D" parent="." unique_id=20294278]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 9)
-script = ExtResource("1_vnhvt")
-bullet_scene = ExtResource("2_4nmvg")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy2" unique_id=995552144]
-shape = SubResource("SphereShape3D_iqxaf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy2" unique_id=919936477]
-mesh = SubResource("SphereMesh_vnhvt")
-
-[node name="spawner" type="Node3D" parent="enemy2" unique_id=35838833]
-
 [node name="enemy 3 pivot" type="Node3D" parent="." unique_id=1831700053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 19)
 
 [node name="enemy3" type="StaticBody3D" parent="enemy 3 pivot" unique_id=980327941]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 0)
@@ -148,54 +189,6 @@ mesh = SubResource("SphereMesh_vnhvt")
 [node name="spawner" type="Node3D" parent="enemy 3 pivot/enemy3" unique_id=927351712]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="enemy 3 pivot/enemy3" unique_id=1420146332]
-libraries/ = SubResource("AnimationLibrary_fr6fq")
-autoplay = &"loop"
-speed_scale = 0.1
-
-[node name="enemy3" type="StaticBody3D" parent="." unique_id=386333147]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.3968887, -11)
-script = ExtResource("1_vnhvt")
-bullet_scene = ExtResource("2_4nmvg")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy3" unique_id=2036468729]
-shape = SubResource("SphereShape3D_iqxaf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy3" unique_id=1573007107]
-mesh = SubResource("SphereMesh_vnhvt")
-
-[node name="spawner" type="Node3D" parent="enemy3" unique_id=935391779]
-
-[node name="enemy4" type="StaticBody3D" parent="." unique_id=485785646]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.3968887, 9)
-script = ExtResource("1_vnhvt")
-bullet_scene = ExtResource("2_4nmvg")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy4" unique_id=1325374103]
-shape = SubResource("SphereShape3D_iqxaf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy4" unique_id=84214305]
-mesh = SubResource("SphereMesh_vnhvt")
-
-[node name="spawner" type="Node3D" parent="enemy4" unique_id=242564831]
-
-[node name="enemy 3 pivot2" type="Node3D" parent="." unique_id=501794592]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3968887, 0)
-
-[node name="enemy3" type="StaticBody3D" parent="enemy 3 pivot2" unique_id=1798792142]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 0)
-script = ExtResource("1_vnhvt")
-bullet_scene = ExtResource("2_4nmvg")
-shootspeed = 0.1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy 3 pivot2/enemy3" unique_id=413151532]
-shape = SubResource("SphereShape3D_iqxaf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy 3 pivot2/enemy3" unique_id=611651332]
-mesh = SubResource("SphereMesh_vnhvt")
-
-[node name="spawner" type="Node3D" parent="enemy 3 pivot2/enemy3" unique_id=700210230]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy 3 pivot2/enemy3" unique_id=1461996581]
 libraries/ = SubResource("AnimationLibrary_fr6fq")
 autoplay = &"loop"
 speed_scale = 0.1
@@ -240,30 +233,14 @@ preprocess = 20.0
 process_material = SubResource("ParticleProcessMaterial_50kdo")
 draw_pass_1 = SubResource("SphereMesh_fr6fq")
 
-[node name="enemy5" type="StaticBody3D" parent="." unique_id=913194835]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 3)
-script = ExtResource("1_vnhvt")
-bullet_scene = ExtResource("2_4nmvg")
-follow_shooting = true
+[node name="slam enemy" type="Node3D" parent="." unique_id=1165794635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19288361, -12)
+script = ExtResource("5_fr6fq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy5" unique_id=1795442408]
-shape = SubResource("SphereShape3D_iqxaf")
+[node name="CSGBox3D" type="CSGBox3D" parent="slam enemy" unique_id=1536680381]
+material_override = ExtResource("5_i5e2s")
+use_collision = true
+size = Vector3(2, 2, 2)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy5" unique_id=693193205]
-mesh = SubResource("SphereMesh_vnhvt")
-
-[node name="spawner" type="Node3D" parent="enemy5" unique_id=1916536291]
-
-[node name="enemy6" type="StaticBody3D" parent="." unique_id=748504203]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 13)
-script = ExtResource("1_vnhvt")
-bullet_scene = ExtResource("2_4nmvg")
-follow_shooting = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy6" unique_id=723790662]
-shape = SubResource("SphereShape3D_iqxaf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy6" unique_id=1934492085]
-mesh = SubResource("SphereMesh_vnhvt")
-
-[node name="spawner" type="Node3D" parent="enemy6" unique_id=639099275]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="slam enemy" unique_id=222551815]
+libraries/ = SubResource("AnimationLibrary_x6dyj")

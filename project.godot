@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="knightfighter"
-run/main_scene="uid://chhmqgjs82py3"
+run/main_scene="uid://ckgv0vbv2eoet"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://test 1/icon.svg"
 
