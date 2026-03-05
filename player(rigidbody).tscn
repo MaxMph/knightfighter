@@ -111,3 +111,4 @@ mouse_filter = 2
 
 [node name="floorcast" type="RayCast3D" parent="." unique_id=717835614]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45256764, 0)
+target_position = Vector3(0, -1.5, 0)

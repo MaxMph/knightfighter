@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://lv8w5e3f5hdn" path="res://textures/gray-cement-stone-wall-128x128.png" id="1_7i8hs"]
 
 [resource]
-albedo_color = Color(0.43134022, 0.43134025, 0.43134025, 1)
+albedo_color = Color(0.7204671, 0.7204676, 0.7204672, 1)
 albedo_texture = ExtResource("1_7i8hs")
 uv1_scale = Vector3(0.295, 0.295, 0.295)
 uv1_triplanar = true

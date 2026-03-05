@@ -1,10 +1,10 @@
 extends RigidBody3D
 
 var speed = 80
-var jump_vel = 16
+var jump_vel = 12
 var health = 100
 
-var max_speed = 18
+var max_speed = 14
 var fric = 20
 
 var base_fov = 75
@@ -41,29 +41,33 @@ func _process(delta: float) -> void:
 		fov = base_fov + (linear_velocity.length() - 6) / 4
 		#fov = base_fov + move_toward(0, linear_velocity.length(), delta * 20)
 	
-	use_floorcast(delta)
-	
-	
 	%cam.fov = fov
 
 func _physics_process(delta: float) -> void:
 	speed_lines(delta)
+	use_floorcast(delta)
 	
 	if linear_velocity.y < -60:
 		linear_velocity.y = -70
 
+	$floorcast.enabled = true
 	if Input.is_action_just_pressed("jump"):
 		if linear_velocity.y < 0:
 			linear_velocity.y = 0
 		
 		if floorcast.is_colliding() and linear_velocity.y < 6:
 			linear_velocity.y = 0
+			$floorcast.enabled = false
 		#apply_central_impulse(Vector3.UP * jump_vel)
 		linear_velocity.y += jump_vel
 		print("Jump")
 	
 	
-	var damp := 4.0
+	var speed_bump = 0
+	var damp = 3.0
+	if $floorcast.is_colliding():
+		damp = 6.0
+		speed_bump = 20
 	var factor = max(0.0, 1.0 - damp * delta)
 	var v := linear_velocity
 	v.x *= factor
@@ -75,7 +79,7 @@ func _physics_process(delta: float) -> void:
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		if (linear_velocity * direction).length() < max_speed:
-			apply_central_force(speed * direction)
+			apply_central_force((speed + speed_bump) * direction)
 	
 	
 	#linear_velocity.x = move_toward(linear_velocity.x, 0, fric * delta)
@@ -96,8 +100,8 @@ func speed_lines(delta):
 
 func use_floorcast(delta):
 	if floorcast.is_colliding():
-		var springstrength = 180
-		var damping = 12
+		var springstrength = 200 #180
+		var damping = 16 #12
 		
 		#var floor_dist = (abs(floorcast.target_position.y) * 2 - floorcast.global_position.distance_to(floorcast.get_collision_point())) / 2
 		#var vertical_velocity = linear_velocity.dot(Vector3.UP)
@@ -123,7 +127,7 @@ func use_floorcast(delta):
 		#var x = 1 - floorcast.global_position.distance_to(floorcast.get_collision_point())
 			#
 		
-		var x = (floorcast.global_position.distance_to(floorcast.get_collision_point()) - 0.8) * -1
+		var x = (floorcast.global_position.distance_to(floorcast.get_collision_point()) - 1.4) * -1
 		var spring_force = (x * springstrength) + -linear_velocity.y * damping
 		#spring_force = clamp(spring_force, -300.0, 300.0)
 		#print(-linear_velocity.y * damping)

@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://p7vkrfhl1hyo"]
+
+[ext_resource type="Texture2D" uid="uid://dycup875smcna" path="res://textures/green-weeds-128x128.png" id="1_4i4jk"]
+
+[resource]
+albedo_color = Color(0.6750633, 0.53443897, 0.71704096, 1)
+albedo_texture = ExtResource("1_4i4jk")
+uv1_scale = Vector3(0.42, 0.42, 0.42)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
