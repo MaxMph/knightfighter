@@ -162,6 +162,8 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, 0)
 script = ExtResource("1_vnhvt")
 bullet_scene = ExtResource("2_4nmvg")
+random_shooting = true
+spiral_shooting = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy" unique_id=504214789]
 shape = SubResource("SphereShape3D_iqxaf")
@@ -178,6 +180,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 19)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 0)
 script = ExtResource("1_vnhvt")
 bullet_scene = ExtResource("2_4nmvg")
+follow_shooting = true
 shootspeed = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy 3 pivot/enemy3" unique_id=533742717]

@@ -22,4 +22,6 @@ func spawn(attack):
 	var new_ring = ring.instantiate()
 	#new_ring.speed = speed
 	new_ring.global_position = global_position
-	get_tree().root.add_child(new_ring)
+	#get_tree().root.add_child(new_ring)
+	#get_tree().root.get_child(0).add_child(new_ring)
+	get_tree().get_first_node_in_group("world").add_child(new_ring)

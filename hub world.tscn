@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://d4dni3yce55w0" path="res://blender files/npc 1/npc 1_face1 (try 2).png" id="3_ub3ay"]
 [ext_resource type="Texture2D" uid="uid://damy0nynfkp28" path="res://blender files/npc 1/npc 1_cloth 1.png" id="4_ir822"]
 [ext_resource type="Texture2D" uid="uid://b7nosc1lrvrrh" path="res://blender files/npc 1/npc 1_dress texture 1.png" id="5_6rxwl"]
+[ext_resource type="Script" uid="uid://f7547fq1gtne" path="res://level passage.gd" id="6_du6s0"]
+[ext_resource type="PackedScene" uid="uid://dsdvw3i1v3vrd" path="res://test_chamber_2.tscn" id="7_ub3ay"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vans8"]
 resource_name = "head.001"
@@ -220,6 +222,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_u56xt")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ub3ay"]
+size = Vector3(6, 8, 13)
+
 [node name="npc world test" type="Node3D" unique_id=1153305730]
 
 [node name="player(rigidbody)" parent="." unique_id=2069604680 instance=ExtResource("1_gcbh6")]
@@ -243,3 +248,15 @@ mesh = SubResource("ArrayMesh_3vtrb")
 [node name="body_001" type="MeshInstance3D" parent="npc 1" unique_id=1793783743]
 transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.3, 0, 0.29431534, 2.3841858e-07)
 mesh = SubResource("ArrayMesh_fp2qw")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1462234666]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("6_du6s0")
+level = ExtResource("7_ub3ay")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=834692849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.5, -52.5, 2)
+shape = SubResource("BoxShape3D_ub3ay")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

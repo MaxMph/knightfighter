@@ -1,10 +1,18 @@
 [gd_scene format=3 uid="uid://dsdvw3i1v3vrd"]
 
 [ext_resource type="Material" uid="uid://bvegv2wucrobr" path="res://textures/wall 1.tres" id="1_1r0hw"]
+[ext_resource type="Texture2D" uid="uid://lv8w5e3f5hdn" path="res://textures/gray-cement-stone-wall-128x128.png" id="2_4x64m"]
 [ext_resource type="PackedScene" uid="uid://c2cpxlhtb7udp" path="res://player(rigidbody).tscn" id="2_llelv"]
 [ext_resource type="Script" uid="uid://b6m35tsv4x68c" path="res://slam_enemy.gd" id="3_c86tl"]
 [ext_resource type="Material" uid="uid://smyf5gai8hnw" path="res://textures/fence 1.tres" id="3_llelv"]
 [ext_resource type="Script" uid="uid://dlhlgves7m43x" path="res://enemies/sentry golem 1/outer orb.gd" id="5_c86tl"]
+[ext_resource type="Texture2D" uid="uid://jrhdpg56nnlq" path="res://textures/wood2 (256).png" id="7_sga3f"]
+[ext_resource type="Script" uid="uid://f7547fq1gtne" path="res://level passage.gd" id="8_sga3f"]
+[ext_resource type="PackedScene" uid="uid://bc6mewi2s5325" path="res://hub world.tscn" id="9_vubwu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vubwu"]
+albedo_color = Color(0.18717614, 0.18717614, 0.18717614, 1)
+albedo_texture = ExtResource("2_4x64m")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w3nvc"]
 sky_top_color = Color(0.44314754, 0.44842905, 0.46292323, 1)
@@ -117,16 +125,127 @@ _data = {
 
 [sub_resource type="SphereMesh" id="SphereMesh_4x64m"]
 
-[node name="test chamber 2" type="Node3D" unique_id=1263757951]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krxw3"]
+albedo_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+albedo_texture = ExtResource("7_sga3f")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4x64m"]
+albedo_color = Color(0.67481464, 0.67481464, 0.6748146, 1)
+albedo_texture = ExtResource("7_sga3f")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sga3f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4x64m"]
+size = Vector3(3, 5, 2)
+
+[node name="test chamber 2" type="Node3D" unique_id=1263757951 groups=["world"]]
+
+[node name="player(rigidbody)" parent="." unique_id=2069604680 instance=ExtResource("2_llelv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 83)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=621026656]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.663895, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.663895, 26)
 material_override = ExtResource("1_1r0hw")
 use_collision = true
-size = Vector3(80, 15, 80)
+size = Vector3(80, 15, 132)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="." unique_id=921865625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.336105, 20)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(80, 5, 120)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="." unique_id=232351488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.836105, 98)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(80, 20, 24)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="." unique_id=967732848]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 21.836105, 83)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(36, 20, 6)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="." unique_id=426000515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 29.836105, 83)
+material_override = SubResource("StandardMaterial3D_vubwu")
+use_collision = true
+size = Vector3(40, 10, 6)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="." unique_id=362042243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 22.836105, 83)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(36, 22, 6)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=884054540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3361053, -31)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(80, 20, 12)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=1056670435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 3.3361053, 31)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(34, 20, 12)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="." unique_id=538773927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.3361053, 93)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(34, 20, 12)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="." unique_id=1706650899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 26.336105, 74)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(34, 20, 12)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="." unique_id=1947374227]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.999999, 3.3361053, 61)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(64, 20, 12)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="." unique_id=199007138]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14.000001, 3.3361053, 61)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(64, 20, 12)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="." unique_id=1166900322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3.3361053, 31)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(34, 20, 12)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="." unique_id=968017144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.836105, 30.5)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(34, 15, 7)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1843737710]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 31, 3.3361053, 0)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(80, 20, 12)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=1567922142]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -31, 3.3361053, 0)
+material_override = ExtResource("1_1r0hw")
+use_collision = true
+size = Vector3(80, 20, 12)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1932908232]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3245678, 0)
+visible = false
 material_override = ExtResource("1_1r0hw")
 flip_faces = true
 size = Vector3(50, 15, 50)
@@ -156,9 +275,6 @@ lifetime = 60.0
 preprocess = 20.0
 process_material = SubResource("ParticleProcessMaterial_krxw3")
 draw_pass_1 = SubResource("SphereMesh_vubwu")
-
-[node name="player(rigidbody)" parent="." unique_id=2069604680 instance=ExtResource("2_llelv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=246404158]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19288361, 0)
@@ -231,3 +347,100 @@ shape = SubResource("SphereShape3D_w3nvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D5" unique_id=1604795163]
 mesh = SubResource("SphereMesh_4x64m")
+
+[node name="elivator" type="Node3D" parent="." unique_id=1147561784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.703116, 83)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="elivator" unique_id=627285763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
+material_override = SubResource("StandardMaterial3D_krxw3")
+size = Vector3(0.2, 19, 0.2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="elivator" unique_id=1617720059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.409562, 0)
+material_override = SubResource("StandardMaterial3D_krxw3")
+size = Vector3(3, 0.4, 3)
+
+[node name="elivator2" type="Node3D" parent="." unique_id=1256636963]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.040977836, 83)
+
+[node name="CSGBox3D300" type="CSGBox3D" parent="elivator2" unique_id=421216933]
+transform = Transform3D(-0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, -0.99999994, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_4x64m")
+use_collision = true
+size = Vector3(3.75, 0.199, 3.75)
+
+[node name="CSGBox3D301" type="CSGBox3D" parent="elivator2" unique_id=396832888]
+transform = Transform3D(-0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, -0.99999994, 0, 6.4649854, 0)
+material_override = SubResource("StandardMaterial3D_4x64m")
+use_collision = true
+size = Vector3(3.75, 0.199, 3.75)
+
+[node name="CSGBox3D302" type="CSGBox3D" parent="elivator2" unique_id=125889713]
+transform = Transform3D(-0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, -0.99999994, -1.6237792, 3.2010186, -1.6191406)
+material_override = SubResource("StandardMaterial3D_4x64m")
+use_collision = true
+size = Vector3(0.5024414, 6.472, 0.51171875)
+
+[node name="CSGBox3D303" type="CSGBox3D" parent="elivator2" unique_id=987438347]
+transform = Transform3D(-0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, -0.99999994, 1.5891004, 3.2010186, -1.6191406)
+material_override = SubResource("StandardMaterial3D_4x64m")
+use_collision = true
+size = Vector3(0.5024414, 6.472, 0.51171875)
+
+[node name="CSGBox3D304" type="CSGBox3D" parent="elivator2" unique_id=1118138512]
+transform = Transform3D(-0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, -0.99999994, -1.6237797, 3.2010186, 1.6029663)
+material_override = SubResource("StandardMaterial3D_4x64m")
+use_collision = true
+size = Vector3(0.5024414, 6.472, 0.51171875)
+
+[node name="CSGBox3D305" type="CSGBox3D" parent="elivator2" unique_id=732753173]
+transform = Transform3D(-0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, -0.99999994, 1.5890999, 3.2010186, 1.6029663)
+material_override = SubResource("StandardMaterial3D_4x64m")
+use_collision = true
+size = Vector3(0.5024414, 6.472, 0.51171875)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="elivator2" unique_id=1288398512]
+transform = Transform3D(1.9000001, 0, 0, 0, -4.371139e-08, -3.2759998, 0, 1, -1.431985e-07, -4.5474735e-13, 3.204196, -1.8007355)
+material_override = ExtResource("3_llelv")
+mesh = SubResource("PlaneMesh_sga3f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="elivator2" unique_id=884353932]
+transform = Transform3D(-1.7440843e-08, -1, 1.431985e-07, 0, -4.371139e-08, -3.2759998, 0.39900002, -4.371139e-08, 6.2594053e-15, -1.8334217, 2.765791, -1.4180622)
+material_override = ExtResource("3_llelv")
+mesh = SubResource("PlaneMesh_sga3f")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="elivator2" unique_id=1799245718]
+transform = Transform3D(0.39900002, 7.1054274e-15, -8.4703295e-22, 0, -4.371139e-08, -3.2759998, -3.5527137e-15, 0.99999994, -1.4319849e-07, -1.4559156, 3.204196, 1.8554535)
+material_override = ExtResource("3_llelv")
+mesh = SubResource("PlaneMesh_sga3f")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="elivator2" unique_id=1885160809]
+transform = Transform3D(-8.305163e-08, 1, -1.431985e-07, 0, -4.371139e-08, -3.2759998, -1.9000001, -4.371138e-08, 6.259405e-15, 1.7230835, 3.204196, -0.007675171)
+material_override = ExtResource("3_llelv")
+mesh = SubResource("PlaneMesh_sga3f")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="elivator2" unique_id=410829325]
+transform = Transform3D(-8.305163e-08, 1, -1.431985e-07, 0, -4.371139e-08, -3.2759998, -1.9000001, -4.371138e-08, 6.259405e-15, -1.7951517, 3.204196, -0.007675171)
+material_override = ExtResource("3_llelv")
+mesh = SubResource("PlaneMesh_sga3f")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="elivator2" unique_id=2040354963]
+transform = Transform3D(0.39900002, 7.1054274e-15, -8.4703295e-22, 0, -4.371139e-08, -3.2759998, -3.5527137e-15, 0.99999994, -1.4319849e-07, 1.424591, 3.204196, 1.8377762)
+material_override = ExtResource("3_llelv")
+mesh = SubResource("PlaneMesh_sga3f")
+
+[node name="Area3D" type="Area3D" parent="elivator2" unique_id=1067984268]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("8_sga3f")
+level = ExtResource("9_vubwu")
+closed = true
+spawn_in = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="elivator2/Area3D" unique_id=1680645860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39089025e-08, 3, -0.5)
+shape = SubResource("BoxShape3D_4x64m")
+
+[connection signal="body_entered" from="elivator2/Area3D" to="elivator2/Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="elivator2/Area3D" to="elivator2/Area3D" method="_on_body_exited"]
