@@ -1,6 +1,7 @@
 extends Area3D
 
-@export var level: PackedScene
+#@export var level: PackedScene
+@export var level: String
 @export var closed = false
 @export var spawn_in = false
 
@@ -9,7 +10,8 @@ extends Area3D
 func _on_body_entered(body: Node3D) -> void:
 	if closed == false:
 		if body.is_in_group("player"):
-			get_tree().change_scene_to_packed(level)
+			pass
+			#get_tree().change_scene_to_packed(level)
 
 
 func _on_body_exited(body: Node3D) -> void:

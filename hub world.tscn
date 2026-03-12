@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://damy0nynfkp28" path="res://blender files/npc 1/npc 1_cloth 1.png" id="4_ir822"]
 [ext_resource type="Texture2D" uid="uid://b7nosc1lrvrrh" path="res://blender files/npc 1/npc 1_dress texture 1.png" id="5_6rxwl"]
 [ext_resource type="Script" uid="uid://f7547fq1gtne" path="res://level passage.gd" id="6_du6s0"]
-[ext_resource type="PackedScene" uid="uid://dsdvw3i1v3vrd" path="res://test_chamber_2.tscn" id="7_ub3ay"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vans8"]
 resource_name = "head.001"
@@ -253,7 +252,6 @@ mesh = SubResource("ArrayMesh_fp2qw")
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("6_du6s0")
-level = ExtResource("7_ub3ay")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=834692849]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.5, -52.5, 2)

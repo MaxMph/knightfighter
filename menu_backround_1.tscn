@@ -204,7 +204,7 @@ light_color = Color(0.93996096, 0.88560134, 0.8299013, 1)
 light_energy = 0.8
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1314126129]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1314126129 groups=["grass"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08779526, -14.73472, 1.8240967)
 material_override = ExtResource("2_oane6")
 use_collision = true
@@ -2060,7 +2060,7 @@ material_override = ExtResource("2_axpnd")
 use_collision = true
 size = Vector3(1, 1, 15)
 
-[node name="CSGBox3D204" type="CSGBox3D" parent="." unique_id=2066962343]
+[node name="CSGBox3D204" type="CSGBox3D" parent="." unique_id=2066962343 groups=["grass"]]
 transform = Transform3D(-0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, -0.99999994, -34.188637, -1.8021414, 31.4)
 material_override = ExtResource("2_oane6")
 use_collision = true

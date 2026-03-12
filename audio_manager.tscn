@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cevj220fqs5ys"]
+
+[ext_resource type="Script" uid="uid://dp3g7h4hy087u" path="res://audio_manager.gd" id="1_bq1v2"]
+[ext_resource type="AudioStream" uid="uid://birca8qn72pcm" path="res://audio/f5.mp3" id="2_bq1v2"]
+
+[node name="audio manager" type="Node" unique_id=1936029971]
+script = ExtResource("1_bq1v2")
+
+[node name="click_reverb" type="AudioStreamPlayer" parent="." unique_id=494880623]
+stream = ExtResource("2_bq1v2")
+pitch_scale = 0.8

@@ -3,6 +3,12 @@
 [ext_resource type="Script" uid="uid://itjggrtgloqn" path="res://player(rigidbody).gd" id="1_tdomp"]
 [ext_resource type="PackedScene" uid="uid://80luihuqynhe" path="res://bow.tscn" id="2_grhfl"]
 [ext_resource type="Shader" uid="uid://c1552vry81var" path="res://textures/speedlines 1.gdshader" id="3_h2puo"]
+[ext_resource type="Script" uid="uid://b4hw6wu5p5gjd" path="res://player/sounds.gd" id="4_ngdxa"]
+[ext_resource type="AudioStream" uid="uid://mtj2348nby4u" path="res://audio/shut_up_ghost-gusty-winter-wind-loop-by-using-crossfades-215541.mp3" id="5_ngdxa"]
+[ext_resource type="AudioStream" uid="uid://bc1lq7k8dpprt" path="res://audio/footsteps/Footsteps_Walk_Grass_Mono_04.wav" id="6_p3vkx"]
+[ext_resource type="AudioStream" uid="uid://cwwal5nrjbagi" path="res://audio/footsteps/Footsteps_Rock_Walk_01.wav" id="6_txikj"]
+[ext_resource type="AudioStream" uid="uid://c1pi8yvhea2vt" path="res://audio/footsteps/Footsteps_Walk_Grass_Mono_09.wav" id="7_2pvjb"]
+[ext_resource type="AudioStream" uid="uid://be0kmor5sxpgx" path="res://audio/footsteps/Footsteps_Rock_Walk_03.wav" id="8_2pvjb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_grhfl"]
 size = Vector3(0.1, 1, 0.1)
@@ -112,3 +118,34 @@ mouse_filter = 2
 [node name="floorcast" type="RayCast3D" parent="." unique_id=717835614]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45256764, 0)
 target_position = Vector3(0, -1.5, 0)
+
+[node name="sounds" type="Node" parent="." unique_id=1657881125]
+script = ExtResource("4_ngdxa")
+
+[node name="wind" type="AudioStreamPlayer" parent="sounds" unique_id=1641080554]
+stream = ExtResource("5_ngdxa")
+volume_db = -80.0
+pitch_scale = 1.25
+autoplay = true
+
+[node name="footsteps" type="Node" parent="sounds" unique_id=507678321]
+
+[node name="grass" type="Node" parent="sounds/footsteps" unique_id=731551641]
+
+[node name="FootstepsWalkGrassMono04" type="AudioStreamPlayer" parent="sounds/footsteps/grass" unique_id=1649100431]
+stream = ExtResource("6_p3vkx")
+volume_db = -10.0
+
+[node name="FootstepsWalkGrassMono09" type="AudioStreamPlayer" parent="sounds/footsteps/grass" unique_id=585782113]
+stream = ExtResource("7_2pvjb")
+volume_db = -10.0
+
+[node name="stone" type="Node" parent="sounds/footsteps" unique_id=173503659]
+
+[node name="FootstepsRockWalk01" type="AudioStreamPlayer" parent="sounds/footsteps/stone" unique_id=609363311]
+stream = ExtResource("6_txikj")
+volume_db = -10.0
+
+[node name="FootstepsRockWalk03" type="AudioStreamPlayer" parent="sounds/footsteps/stone" unique_id=1030322152]
+stream = ExtResource("8_2pvjb")
+volume_db = -10.0

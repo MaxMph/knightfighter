@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_pressed() -> void:
+	Global.audio_manager.get_sound("click_reverb").play()
 	get_tree().change_scene_to_packed(next_scene)
 
 
