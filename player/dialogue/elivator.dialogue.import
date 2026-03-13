@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bqby32g0hkcqu"
+path="res://.godot/imported/elivator.dialogue-94b96958a95c0e90467846a26feedf65.tres"
+
+[deps]
+
+source_file="res://player/dialogue/elivator.dialogue"
+dest_files=["res://.godot/imported/elivator.dialogue-94b96958a95c0e90467846a26feedf65.tres"]
+
+[params]
+
+defaults=true

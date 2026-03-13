@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://smyf5gai8hnw" path="res://textures/fence 1.tres" id="3_llelv"]
 [ext_resource type="Script" uid="uid://dlhlgves7m43x" path="res://enemies/sentry golem 1/outer orb.gd" id="5_c86tl"]
 [ext_resource type="Texture2D" uid="uid://jrhdpg56nnlq" path="res://textures/wood2 (256).png" id="7_sga3f"]
+[ext_resource type="Script" uid="uid://c41d8370pn055" path="res://elivator.gd" id="8_sga3f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vubwu"]
 albedo_color = Color(0.18717614, 0.18717614, 0.18717614, 1)
@@ -431,10 +432,9 @@ mesh = SubResource("PlaneMesh_sga3f")
 [node name="Area3D" type="Area3D" parent="elivator2" unique_id=1067984268]
 collision_layer = 0
 collision_mask = 3
+script = ExtResource("8_sga3f")
+starting_inside = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="elivator2/Area3D" unique_id=1680645860]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39089025e-08, 3, -0.5)
 shape = SubResource("BoxShape3D_4x64m")
-
-[connection signal="body_entered" from="elivator2/Area3D" to="elivator2/Area3D" method="_on_body_entered"]
-[connection signal="body_exited" from="elivator2/Area3D" to="elivator2/Area3D" method="_on_body_exited"]

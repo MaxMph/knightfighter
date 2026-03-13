@@ -5,11 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://d4dni3yce55w0" path="res://blender files/npc 1/npc 1_face1 (try 2).png" id="3_ub3ay"]
 [ext_resource type="Texture2D" uid="uid://damy0nynfkp28" path="res://blender files/npc 1/npc 1_cloth 1.png" id="4_ir822"]
 [ext_resource type="Texture2D" uid="uid://b7nosc1lrvrrh" path="res://blender files/npc 1/npc 1_dress texture 1.png" id="5_6rxwl"]
+[ext_resource type="Script" uid="uid://b0oldgcutn5u2" path="res://npc.gd" id="6_6rxwl"]
 [ext_resource type="Script" uid="uid://f7547fq1gtne" path="res://level passage.gd" id="6_du6s0"]
+[ext_resource type="Resource" uid="uid://covtoi0mdpty6" path="res://npc/mabel.dialogue" id="7_d6esa"]
+[ext_resource type="Script" uid="uid://c41d8370pn055" path="res://elivator.gd" id="7_ub3ay"]
+[ext_resource type="Resource" uid="uid://bqby32g0hkcqu" path="res://player/dialogue/elivator.dialogue" id="8_ir822"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vans8"]
 resource_name = "head.001"
 cull_mode = 2
+albedo_color = Color(1.5720325, 1.5720325, 1.5720325, 1)
 albedo_texture = ExtResource("3_ub3ay")
 roughness = 0.5
 texture_filter = 0
@@ -221,10 +226,17 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_u56xt")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ir822"]
+radius = 0.60498047
+height = 2.6263428
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ub3ay"]
 size = Vector3(6, 8, 13)
 
-[node name="npc world test" type="Node3D" unique_id=1153305730]
+[sub_resource type="BoxShape3D" id="BoxShape3D_du6s0"]
+size = Vector3(2, 4, 2)
+
+[node name="npc world test" type="Node3D" unique_id=1153305730 groups=["world"]]
 
 [node name="player(rigidbody)" parent="." unique_id=2069604680 instance=ExtResource("1_gcbh6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
@@ -233,20 +245,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0040750504, 0.026275635, 0.0036354065)
 
 [node name="npc 1" type="Node3D" parent="." unique_id=911085553]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, -18)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.8414373, 0, -20.039726)
 
 [node name="head_001" type="MeshInstance3D" parent="npc 1" unique_id=716711155]
-transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.27093545, 0, 0.2984206, 2.3841858e-07)
+transform = Transform3D(0.339, 0, 0, 0, 0.339, 0, 0, 0, 0.271, 0, 0.15040916, 2.3841858e-07)
 mesh = SubResource("ArrayMesh_lktll")
 
 [node name="hair_001" type="MeshInstance3D" parent="npc 1" unique_id=332987884]
-transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.27093545, 0, 0.2984206, 2.3841858e-07)
+transform = Transform3D(0.339, 0, 0, 0, 0.339, 0, 0, 0, 0.271, 0, 0.15040922, 2.3841858e-07)
 material_override = SubResource("StandardMaterial3D_jb5dg")
 mesh = SubResource("ArrayMesh_3vtrb")
 
 [node name="body_001" type="MeshInstance3D" parent="npc 1" unique_id=1793783743]
-transform = Transform3D(0.34, 0, 0, 0, 0.34, 0, 0, 0, 0.3, 0, 0.29431534, 2.3841858e-07)
+transform = Transform3D(0.339, 0, 0, 0, 0.339, 0, 0, 0, 0.271, 0, 0.14630389, 2.3841858e-07)
 mesh = SubResource("ArrayMesh_fp2qw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="npc 1" unique_id=1974093229]
+script = ExtResource("6_6rxwl")
+dialogue_res = ExtResource("7_d6esa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="npc 1/StaticBody3D" unique_id=1793259200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.052864075, -0.3217163, 0)
+shape = SubResource("CapsuleShape3D_ir822")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1462234666]
 collision_layer = 0
@@ -257,4 +277,16 @@ script = ExtResource("6_du6s0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.5, -52.5, 2)
 shape = SubResource("BoxShape3D_ub3ay")
 
+[node name="elivator" type="Area3D" parent="." unique_id=1947968153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.001995, 1.5, -24.07527)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("7_ub3ay")
+destination = "res://test_chamber_2.tscn"
+dialogue_res = ExtResource("8_ir822")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="elivator" unique_id=175220230]
+shape = SubResource("BoxShape3D_du6s0")
+
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_entered" from="elivator" to="elivator" method="_on_body_entered"]

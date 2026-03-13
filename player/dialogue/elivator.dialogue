@@ -1,0 +1,12 @@
+~ start
+Take the elivator?
+- Yes
+	do change_scene()
+#	do emit_signal("take_elivator", "yes")
+- No
+#	do emit_signal("take_elivator", "no")
+#- Start again => start
+#- End the conversation => END
+#Nathan: For more information see the online documentation.
+do Global.in_menu = false
+=> END

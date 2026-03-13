@@ -1,0 +1,12 @@
+~ start
+Mabel: [[Hello|Greetings|Good day]] Traveler, What would you wish to speek about?
+- Where are we?
+	Mabel: You picked the first one.
+- Who are you?
+	Mabel: You picked the second one.
+- Nevermind
+#- Start again => start
+#	- End the conversation => END
+Mabel: I wish you well, traveler.
+do Global.in_menu = false
+=> END

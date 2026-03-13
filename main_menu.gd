@@ -1,6 +1,6 @@
 extends Control
 
-@export var next_scene: PackedScene
+@export var next_scene: String
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -13,8 +13,13 @@ func _process(delta: float) -> void:
 
 func _on_start_pressed() -> void:
 	Global.audio_manager.get_sound("click_reverb").play()
-	get_tree().change_scene_to_packed(next_scene)
+	#$fade_in_out.fade(4, 1)
+	#await Global.fade_in_out.fade(4, 1)
+	#await $fade_in_out.faded_out
+	#get_tree().change_scene_to_file("res://hub world.tscn")
+	#get_tree().change_scene_to_packed(next_scene)
+	Global.change_scene(next_scene, 0.2)
 
 
 func _on_quit_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().quit()

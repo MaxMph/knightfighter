@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://covtoi0mdpty6"
+path="res://.godot/imported/mabel.dialogue-82e1e95bee6d974c1af8e3f823563de2.tres"
+
+[deps]
+
+source_file="res://npc/mabel.dialogue"
+dest_files=["res://.godot/imported/mabel.dialogue-82e1e95bee6d974c1af8e3f823563de2.tres"]
+
+[params]
+
+defaults=true

@@ -3399,12 +3399,6 @@ material_override = ExtResource("2_axpnd")
 use_collision = true
 size = Vector3(212, 3, 20)
 
-[node name="CSGBox3D282" type="CSGBox3D" parent="level acsess floor" unique_id=1462968208]
-transform = Transform3D(-4.3711385e-08, 0, 0.9999998, 0, 0.9999998, 0, -0.9999999, 0, -4.371138e-08, 6.5309753, -76.0738, 2.2318306)
-material_override = ExtResource("2_axpnd")
-use_collision = true
-size = Vector3(212, 3, 20)
-
 [node name="CSGBox3D116" type="CSGBox3D" parent="." unique_id=1440201396]
 transform = Transform3D(0.9999999, 0, 8.742276e-08, 0, 0.9999999, 0, -8.742276e-08, 0, 0.9999999, 45.29587, -99.00868, 0.9138178)
 material_override = ExtResource("2_axpnd")

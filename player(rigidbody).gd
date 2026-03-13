@@ -16,9 +16,12 @@ var runfov = 0
 @export var cam: Camera3D
 
 @export var floorcast: RayCast3D
+@export var fade_in_out: ColorRect
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#$fade_in_out.fade(1, -1)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -51,17 +54,19 @@ func _physics_process(delta: float) -> void:
 		linear_velocity.y = -70
 
 	$floorcast.enabled = true
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and Global.in_menu == false:
 		if linear_velocity.y < 0:
 			linear_velocity.y = 0
 		
-		if floorcast.is_colliding() and linear_velocity.y < 6:
-			linear_velocity.y = 0
-			$floorcast.enabled = false
+		if floorcast.is_colliding():
+			$sounds.step_sound()
+			if linear_velocity.y < 6:
+				linear_velocity.y = 0
+				$floorcast.enabled = false
 		#apply_central_impulse(Vector3.UP * jump_vel)
 		linear_velocity.y += jump_vel
-		print("Jump")
-	
+		#print("Jump")
+	#Global.in_menu = false
 	
 	var speed_bump = 0
 	var damp = 3.0
@@ -77,10 +82,18 @@ func _physics_process(delta: float) -> void:
 	
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+	if direction and Global.in_menu == false:
 		if (linear_velocity * direction).length() < max_speed:
 			apply_central_force((speed + speed_bump) * direction)
 	
+	#if %int_cast.is_colliding():
+	if %int_cast.get_collider() != null and %int_cast.get_collider().has_method("interacted"):
+		$Control/int_indicator.show()
+		if Input.is_action_just_pressed("interact"):
+			#print("insfdg")
+			%int_cast.get_collider().interacted()
+	else:
+		$Control/int_indicator.hide()
 	
 	#linear_velocity.x = move_toward(linear_velocity.x, 0, fric * delta)
 	#linear_velocity.z = move_toward(linear_velocity.z , 0, fric * delta)
@@ -132,3 +145,6 @@ func use_floorcast(delta):
 		#spring_force = clamp(spring_force, -300.0, 300.0)
 		#print(-linear_velocity.y * damping)
 		apply_central_force(Vector3.UP * spring_force)
+
+func dialogue():
+	pass

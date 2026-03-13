@@ -6,6 +6,7 @@ func _ready() -> void:
 	Global.audio_manager = self
 	#print(Global.audio_manager.name)
 	print("audio")
+	#$metal_door.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
