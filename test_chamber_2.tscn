@@ -5,9 +5,19 @@
 [ext_resource type="PackedScene" uid="uid://c2cpxlhtb7udp" path="res://player(rigidbody).tscn" id="2_llelv"]
 [ext_resource type="Script" uid="uid://b6m35tsv4x68c" path="res://slam_enemy.gd" id="3_c86tl"]
 [ext_resource type="Material" uid="uid://smyf5gai8hnw" path="res://textures/fence 1.tres" id="3_llelv"]
+[ext_resource type="Texture2D" uid="uid://c57c3bc533q6" path="res://textures/fence 3.png" id="4_ckt2p"]
 [ext_resource type="Script" uid="uid://dlhlgves7m43x" path="res://enemies/sentry golem 1/outer orb.gd" id="5_c86tl"]
+[ext_resource type="AudioStream" uid="uid://cveon345hgwb6" path="res://audio/effects/lordsonny-punch-a-rock-161647.mp3" id="6_n20y8"]
+[ext_resource type="Script" uid="uid://b8xsyawbwgus2" path="res://enemy 2.gd" id="7_krxw3"]
 [ext_resource type="Texture2D" uid="uid://jrhdpg56nnlq" path="res://textures/wood2 (256).png" id="7_sga3f"]
+[ext_resource type="PackedScene" uid="uid://caoovct7q0uvf" path="res://enemies/bullets/bullet_type_1.tscn" id="8_csmu1"]
+[ext_resource type="Script" uid="uid://tpd4cpaur812" path="res://phase_2.gd" id="8_gt14h"]
 [ext_resource type="Script" uid="uid://c41d8370pn055" path="res://elivator.gd" id="8_sga3f"]
+[ext_resource type="Script" uid="uid://bnfbe5olsuem1" path="res://phase_1.gd" id="9_csmu1"]
+[ext_resource type="Script" uid="uid://1j47twuhym0c" path="res://door_shut.gd" id="12_08lnh"]
+[ext_resource type="AudioStream" uid="uid://bdvbuq8uypssg" path="res://audio/effects/soundreality-hit-windy-thud-399086.mp3" id="13_hh783"]
+[ext_resource type="AudioStream" uid="uid://cce5mj06fbjpj" path="res://audio/effects/freesound_community-stone-creek-43557.mp3" id="14_tlp53"]
+[ext_resource type="Resource" uid="uid://bqby32g0hkcqu" path="res://player/dialogue/elivator.dialogue" id="15_3kvae"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vubwu"]
 albedo_color = Color(0.18717614, 0.18717614, 0.18717614, 1)
@@ -64,6 +74,16 @@ gravity = Vector3(0, 0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1r0hw"]
 size = Vector3(4, 12, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xi04d"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("4_ckt2p")
+uv1_scale = Vector3(1.02, 1.02, 1.02)
+uv1_triplanar = true
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_c86tl"]
 lightmap_size_hint = Vector2i(44, 146)
@@ -124,6 +144,133 @@ _data = {
 
 [sub_resource type="SphereMesh" id="SphereMesh_4x64m"]
 
+[sub_resource type="Animation" id="Animation_krxw3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D8:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2, -26.014952)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody3D7:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(26, 2, -0.014951229)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody3D6:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-26, 2, -0.014951229)]
+}
+
+[sub_resource type="Animation" id="Animation_csmu1"]
+resource_name = "phase 2 start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D8:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2, -26.014952), Vector3(0, 2, -25.014952)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody3D7:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(26, 2, -0.014951229), Vector3(25, 2, -0.014951229)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody3D6:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-26, 2, -0.014951229), Vector3(-24, 2, -0.014951229)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StaticBody3D6/shooter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"get_shooting_types"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StaticBody3D7/shooter")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"get_shooting_types"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("StaticBody3D8/shooter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"get_shooting_types"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08lnh"]
+_data = {
+&"RESET": SubResource("Animation_krxw3"),
+&"phase 2 start": SubResource("Animation_csmu1")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_krxw3"]
 albedo_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
 albedo_texture = ExtResource("7_sga3f")
@@ -140,6 +287,82 @@ texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4x64m"]
 size = Vector3(3, 5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_csmu1"]
+size = Vector3(20, 21.875, 5.5410156)
+
+[sub_resource type="Animation" id="Animation_08lnh"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGBox3D9:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(20.336, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_hh783"]
+resource_name = "close"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CSGBox3D9:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(20.336, -0.0005, 0, 0.0005, 0, 10.873, -0.16394626, 9.627, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tlp53"]
+_data = {
+&"RESET": SubResource("Animation_08lnh"),
+&"close": SubResource("Animation_hh783")
+}
 
 [node name="test chamber 2" type="Node3D" unique_id=1263757951 groups=["world"]]
 
@@ -225,10 +448,10 @@ use_collision = true
 size = Vector3(34, 20, 12)
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="." unique_id=968017144]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.836105, 30.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.336, 30.5)
 material_override = ExtResource("1_1r0hw")
 use_collision = true
-size = Vector3(34, 15, 7)
+size = Vector3(34, 24, 7)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1843737710]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 31, 3.3361053, 0)
@@ -284,7 +507,7 @@ shape = SubResource("BoxShape3D_1r0hw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1214785719]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
-material_override = ExtResource("3_llelv")
+material_override = SubResource("StandardMaterial3D_xi04d")
 mesh = SubResource("BoxMesh_c86tl")
 
 [node name="slam enemy" type="Node3D" parent="." unique_id=1263333422]
@@ -307,45 +530,140 @@ size = Vector3(0.6, 13, 0.6)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="slam enemy" unique_id=778614626]
 libraries/ = SubResource("AnimationLibrary_csmu1")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1571321900]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 1.9850488)
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="slam enemy" unique_id=354445129]
+stream = ExtResource("6_n20y8")
+pitch_scale = 0.8
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="slam enemy" unique_id=1155372069]
+stream = ExtResource("6_n20y8")
+volume_db = -20.0
+pitch_scale = 0.6
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="slam enemy" unique_id=1524961780]
+stream = ExtResource("13_hh783")
+volume_db = -20.0
+
+[node name="phase 2" type="Node3D" parent="." unique_id=877822586]
+script = ExtResource("8_gt14h")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="phase 2" unique_id=1918880057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 2, -0.014951229)
 script = ExtResource("5_c86tl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=889119816]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phase 2/StaticBody3D6" unique_id=177433697]
 shape = SubResource("SphereShape3D_w3nvc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=425244732]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="phase 2/StaticBody3D6" unique_id=259840678]
 mesh = SubResource("SphereMesh_4x64m")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=464954712]
+[node name="shooter" type="Node3D" parent="phase 2/StaticBody3D6" unique_id=1321148384]
+script = ExtResource("7_krxw3")
+bullet_scene = ExtResource("8_csmu1")
+bullet_speed = 5
+follow_shooting = true
+shootspeed = 1.0
+auto_start = false
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="phase 2" unique_id=1611720417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 2, -0.014951229)
+script = ExtResource("5_c86tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phase 2/StaticBody3D7" unique_id=1123865788]
+shape = SubResource("SphereShape3D_w3nvc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="phase 2/StaticBody3D7" unique_id=150862908]
+mesh = SubResource("SphereMesh_4x64m")
+
+[node name="shooter" type="Node3D" parent="phase 2/StaticBody3D7" unique_id=1314811259]
+script = ExtResource("7_krxw3")
+bullet_scene = ExtResource("8_csmu1")
+bullet_speed = 5
+follow_shooting = true
+shootspeed = 1.0
+auto_start = false
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="phase 2" unique_id=1144963920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -26.014952)
+script = ExtResource("5_c86tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phase 2/StaticBody3D8" unique_id=1130184438]
+shape = SubResource("SphereShape3D_w3nvc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="phase 2/StaticBody3D8" unique_id=675756317]
+mesh = SubResource("SphereMesh_4x64m")
+
+[node name="shooter" type="Node3D" parent="phase 2/StaticBody3D8" unique_id=463051352]
+script = ExtResource("7_krxw3")
+bullet_scene = ExtResource("8_csmu1")
+bullet_speed = 5
+follow_shooting = true
+shootspeed = 1.0
+auto_start = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="phase 2" unique_id=249629287]
+libraries/ = SubResource("AnimationLibrary_08lnh")
+
+[node name="phase 1" type="Node3D" parent="." unique_id=1285154579]
+script = ExtResource("9_csmu1")
+
+[node name="triggers" type="Node3D" parent="phase 1" unique_id=593681835]
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="phase 1/triggers" unique_id=464954712]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -2.0149512)
 script = ExtResource("5_c86tl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=1420976458]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phase 1/triggers/StaticBody3D3" unique_id=1420976458]
 shape = SubResource("SphereShape3D_w3nvc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=466396579]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/triggers/StaticBody3D3" unique_id=466396579]
 mesh = SubResource("SphereMesh_4x64m")
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=7933626]
+[node name="StaticBody3D4" type="StaticBody3D" parent="phase 1/triggers" unique_id=7933626]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, -0.014951229)
 script = ExtResource("5_c86tl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=1092437012]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phase 1/triggers/StaticBody3D4" unique_id=1092437012]
 shape = SubResource("SphereShape3D_w3nvc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4" unique_id=1934243758]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/triggers/StaticBody3D4" unique_id=1934243758]
 mesh = SubResource("SphereMesh_4x64m")
 
-[node name="StaticBody3D5" type="StaticBody3D" parent="." unique_id=61310764]
+[node name="StaticBody3D5" type="StaticBody3D" parent="phase 1/triggers" unique_id=61310764]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6, -0.014951229)
 script = ExtResource("5_c86tl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" unique_id=1196421179]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phase 1/triggers/StaticBody3D5" unique_id=1196421179]
 shape = SubResource("SphereShape3D_w3nvc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D5" unique_id=1604795163]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/triggers/StaticBody3D5" unique_id=1604795163]
 mesh = SubResource("SphereMesh_4x64m")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="phase 1/triggers" unique_id=1571321900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 1.9850488)
+script = ExtResource("5_c86tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phase 1/triggers/StaticBody3D2" unique_id=889119816]
+shape = SubResource("SphereShape3D_w3nvc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/triggers/StaticBody3D2" unique_id=425244732]
+mesh = SubResource("SphereMesh_4x64m")
+
+[node name="StaticBody3D9" type="StaticBody3D" parent="phase 1" unique_id=483886636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -0.014951706)
+script = ExtResource("5_c86tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phase 1/StaticBody3D9" unique_id=1360408648]
+shape = SubResource("SphereShape3D_w3nvc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/StaticBody3D9" unique_id=2011360612]
+mesh = SubResource("SphereMesh_4x64m")
+
+[node name="shooter" type="Node3D" parent="phase 1/StaticBody3D9" unique_id=793789604]
+script = ExtResource("7_krxw3")
+bullet_scene = ExtResource("8_csmu1")
+bullet_speed = 10
+follow_shooting = true
+shootspeed = 1.0
 
 [node name="elivator" type="Node3D" parent="." unique_id=1147561784]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.703116, 83)
@@ -433,8 +751,36 @@ mesh = SubResource("PlaneMesh_sga3f")
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("8_sga3f")
+destination = "res://hub world.tscn"
 starting_inside = true
+dialogue_res = ExtResource("15_3kvae")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="elivator2/Area3D" unique_id=1680645860]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39089025e-08, 3, -0.5)
 shape = SubResource("BoxShape3D_4x64m")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=173079621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("12_08lnh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=268458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9375, 1.0632935)
+shape = SubResource("BoxShape3D_csmu1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area3D" unique_id=121263354]
+libraries/ = SubResource("AnimationLibrary_tlp53")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Area3D" unique_id=2133365581]
+stream = ExtResource("13_hh783")
+volume_db = 10.0
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Area3D" unique_id=815639827]
+stream = ExtResource("14_tlp53")
+volume_db = 10.0
+pitch_scale = 0.8
+
+[connection signal="body_entered" from="elivator2/Area3D" to="elivator2/Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="elivator2/Area3D" to="elivator2/Area3D" method="_on_body_exited"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

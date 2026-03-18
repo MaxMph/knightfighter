@@ -15,8 +15,11 @@ func _process(delta: float) -> void:
 func interacted():
 	#print("int")
 	if Global.in_menu == false:
-		
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		var new_balloon = balloon.instantiate()
 		add_child(new_balloon)
 		new_balloon.start(dialogue_res, "start", [self])
 		Global.in_menu = true
+
+func dialogue_done():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

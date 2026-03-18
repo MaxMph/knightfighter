@@ -14,6 +14,7 @@ config/name="knightfighter"
 run/main_scene="uid://ckgv0vbv2eoet"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://test 1/icon.svg"
 
 [autoload]
@@ -31,6 +32,8 @@ window/size/viewport_width=800
 window/size/viewport_height=540
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+mouse_cursor/custom_image="uid://bgqea757bg2x0"
+mouse_cursor/custom_image_hotspot=Vector2(8, 8)
 
 [editor_plugins]
 

@@ -8,5 +8,5 @@ Take the elivator?
 #- Start again => start
 #- End the conversation => END
 #Nathan: For more information see the online documentation.
-do Global.in_menu = false
+do Global.dialogue_end()
 => END

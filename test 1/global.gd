@@ -31,3 +31,7 @@ func change_scene(scene:String, wait_time = 0.0):
 	#print("changed")
 	fade_in_out.fade(3, -1)
 	return
+
+func dialogue_end():
+	in_menu = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

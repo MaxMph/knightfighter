@@ -12,19 +12,27 @@ extends Node3D
 
 @export var spiral_speed = 30
 
+@export var auto_start = true
+
 var time = 0.0
+
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	if random_shooting:
-		bullet_call("random", shootspeed)
-	if forward_shooting:
-		bullet_call("forward", shootspeed)
-	if spiral_shooting:
-		bullet_call("spiral", shootspeed)
-	if follow_shooting:
-		bullet_call("follow", shootspeed)
+	if auto_start:
+		get_shooting_types()
+		
+	#
+	#if random_shooting:
+		#bullet_call("random", shootspeed)
+	#if forward_shooting:
+		#bullet_call("forward", shootspeed)
+	#if spiral_shooting:
+		#bullet_call("spiral", shootspeed)
+	#if follow_shooting:
+		#bullet_call("follow", shootspeed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -44,13 +52,28 @@ func bullet_call(type, interval):
 			follow(bullet_scene)
 	bullet_call(type, interval)
 
+
+func get_shooting_types():
+	
+	if random_shooting:
+		bullet_call("random", shootspeed)
+	if forward_shooting:
+		bullet_call("forward", shootspeed)
+	if spiral_shooting:
+		bullet_call("spiral", shootspeed)
+	if follow_shooting:
+		bullet_call("follow", shootspeed)
+		
+
+
 func spiral(bullet):
 	var new_bullet = bullet_scene.instantiate()
 	new_bullet.speed = bullet_speed
 	new_bullet.global_position = global_position
 	new_bullet.rotation_degrees.y = time * spiral_speed
 	#new_bullet.rotation_degrees = Vector3(randf_range(-60, 60), randf_range(-180, 180), randf_range(-60, 60))
-	get_tree().root.add_child(new_bullet)
+	#get_tree().root.add_child(new_bullet)
+	get_tree().get_first_node_in_group("world").add_child(new_bullet)
 
 
 func follow(bullet):
@@ -59,7 +82,7 @@ func follow(bullet):
 	new_bullet.global_position = global_position
 	#new_bullet.rotation = global_position.direction_to(get_tree().get_first_node_in_group("player").global_position)
 	
-	get_tree().root.add_child(new_bullet)
+	get_tree().get_first_node_in_group("world").add_child(new_bullet)
 	if get_tree().get_first_node_in_group("player").global_position != null:
 		new_bullet.look_at(get_tree().get_first_node_in_group("player").global_position)
 
@@ -72,7 +95,7 @@ func random(bullet):
 	new_bullet.global_position = global_position
 	#new_bullet.rotation.y = deg_to_rad(randi_range(-180, 180))
 	new_bullet.rotation_degrees = Vector3(randf_range(-60, 60), randf_range(-180, 180), randf_range(-60, 60))
-	get_tree().root.add_child(new_bullet)
+	get_tree().get_first_node_in_group("world").add_child(new_bullet)
 	#print("shot")
 
 func forward(bullet):
@@ -81,4 +104,4 @@ func forward(bullet):
 	new_bullet.global_position = global_position
 	new_bullet.rotation = global_rotation
 	#new_bullet.rotation_degrees = Vector3(randf_range(-60, 60), randf_range(-180, 180), randf_range(-60, 60))
-	get_tree().root.add_child(new_bullet)
+	get_tree().get_first_node_in_group("world").add_child(new_bullet)

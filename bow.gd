@@ -16,11 +16,13 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("l_click"):
+	if Input.is_action_pressed("l_click") and Global.in_menu == false:
 		draw(delta)
 	if Input.is_action_just_released("l_click"):
 		if drawed > 10:
 			shoot()
+		else:
+			drawed = 0
 	
 	$ColorRect/ProgressBar.value = drawed
 	

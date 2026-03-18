@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c0lcxww2j7b2f"]
+
+[ext_resource type="AudioStream" uid="uid://vnaaloqecbe4" path="res://audio/effects/freesound_community-hit-94706.mp3" id="1_myxqt"]
+
+[node name="rock_break_sound" type="AudioStreamPlayer3D" unique_id=1943254365]
+stream = ExtResource("1_myxqt")
+autoplay = true

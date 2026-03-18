@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cobj1xbf2a6cl" path="res://bow.gd" id="1_2l2of"]
 [ext_resource type="PackedScene" uid="uid://dt77gk730h8ha" path="res://arrow.tscn" id="2_2of8d"]
 [ext_resource type="Material" uid="uid://c2yjrq8m34pyd" path="res://textures/core 1.tres" id="3_60xqc"]
+[ext_resource type="Texture2D" uid="uid://bgqea757bg2x0" path="res://textures/ui/cursor 1.png" id="3_cx05r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hm5qp"]
 resource_name = "Material"
@@ -117,7 +118,7 @@ script = ExtResource("1_2l2of")
 arrow = ExtResource("2_2of8d")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=410663655]
-custom_minimum_size = Vector2(4, 4)
+custom_minimum_size = Vector2(2, 2)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -148,6 +149,24 @@ offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect" unique_id=1500274256]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_cx05r")
 
 [node name="Armature" type="Node3D" parent="." unique_id=1756874709]
 transform = Transform3D(0.4502812, 0.39654356, 0, -0.3965435, 0.45028126, 0, 0, 0, 0.59999996, 0.6123202, -0.06343636, 0)

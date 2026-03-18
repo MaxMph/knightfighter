@@ -4,6 +4,7 @@ extends CharacterBody3D
 #var spawn_rot
 
 var speed = 4.0
+var dmg = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,3 +24,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.has_method("hit"):
+		body.hit(dmg)
+		queue_free()

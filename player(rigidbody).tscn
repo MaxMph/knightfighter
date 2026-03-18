@@ -1,19 +1,27 @@
 [gd_scene format=3 uid="uid://c2cpxlhtb7udp"]
 
 [ext_resource type="Script" uid="uid://itjggrtgloqn" path="res://player(rigidbody).gd" id="1_tdomp"]
+[ext_resource type="Script" uid="uid://c6lbwxq3ui5wv" path="res://cam_shake.gd" id="2_djten"]
 [ext_resource type="PackedScene" uid="uid://80luihuqynhe" path="res://bow.tscn" id="2_grhfl"]
 [ext_resource type="Shader" uid="uid://c1552vry81var" path="res://textures/speedlines 1.gdshader" id="3_h2puo"]
 [ext_resource type="Script" uid="uid://b4hw6wu5p5gjd" path="res://player/sounds.gd" id="4_ngdxa"]
-[ext_resource type="PackedScene" uid="uid://d1jup8iyjgn7i" path="res://player/fade_in_out.tscn" id="4_pjuw3"]
+[ext_resource type="Texture2D" uid="uid://di0igfstxs4rb" path="res://textures/ui/healthbar (front).png" id="5_8xlo7"]
 [ext_resource type="AudioStream" uid="uid://mtj2348nby4u" path="res://audio/shut_up_ghost-gusty-winter-wind-loop-by-using-crossfades-215541.mp3" id="5_ngdxa"]
+[ext_resource type="Texture2D" uid="uid://bikkvlwceqqdv" path="res://textures/ui/healthbar (prog).png" id="6_6oxdc"]
 [ext_resource type="AudioStream" uid="uid://bc1lq7k8dpprt" path="res://audio/footsteps/Footsteps_Walk_Grass_Mono_04.wav" id="6_p3vkx"]
+[ext_resource type="Texture2D" uid="uid://heph71qd3yoc" path="res://textures/ui/vignette 1.png" id="6_qfdfa"]
+[ext_resource type="Script" uid="uid://l12i00ehe5yq" path="res://player/hit_effect.gd" id="6_rneyr"]
 [ext_resource type="AudioStream" uid="uid://cwwal5nrjbagi" path="res://audio/footsteps/Footsteps_Rock_Walk_01.wav" id="6_txikj"]
 [ext_resource type="AudioStream" uid="uid://c1pi8yvhea2vt" path="res://audio/footsteps/Footsteps_Walk_Grass_Mono_09.wav" id="7_2pvjb"]
+[ext_resource type="Texture2D" uid="uid://b3e6r63t5p8qv" path="res://textures/ui/abstract-artistic-paint-splatter-texture.png" id="7_kf672"]
 [ext_resource type="AudioStream" uid="uid://be0kmor5sxpgx" path="res://audio/footsteps/Footsteps_Rock_Walk_03.wav" id="8_2pvjb"]
+[ext_resource type="Texture2D" uid="uid://pt17aaxabwjx" path="res://textures/ui/hud border.png" id="10_6oxdc"]
 [ext_resource type="AudioStream" uid="uid://vw52iw3b47ma" path="res://audio/footsteps/Footsteps_Rock_Walk_05.wav" id="10_idnc7"]
 [ext_resource type="AudioStream" uid="uid://b5d1ncslmvyne" path="res://audio/footsteps/Footsteps_Rock_Walk_06.wav" id="11_pjuw3"]
 [ext_resource type="AudioStream" uid="uid://bthcdppb0alpd" path="res://audio/footsteps/Footsteps_Rock_Walk_07.wav" id="12_titie"]
 [ext_resource type="AudioStream" uid="uid://ctmqx53ccj0gy" path="res://audio/footsteps/Footsteps_Rock_Walk_08.wav" id="13_djten"]
+[ext_resource type="Script" uid="uid://dpiat0ntslkxn" path="res://player/hitbox.gd" id="15_titie"]
+[ext_resource type="AudioStream" uid="uid://v8ydi5jvt56p" path="res://audio/effects/hit sound combo.mp3" id="19_1qy2w"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_grhfl"]
 size = Vector3(0.1, 1, 0.1)
@@ -42,7 +50,10 @@ shader_parameter/mask_size = 0.1
 shader_parameter/mask_edge = 0.654000031065
 shader_parameter/animation_speed = 16.0000007125
 
-[node name="player(rigidbody)" type="RigidBody3D" unique_id=2069604680 node_paths=PackedStringArray("head", "cam", "floorcast", "fade_in_out") groups=["player"]]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pjuw3"]
+height = 2.4
+
+[node name="player(rigidbody)" type="RigidBody3D" unique_id=2069604680 node_paths=PackedStringArray("head", "cam", "floorcast") groups=["player"]]
 collision_layer = 2
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -50,28 +61,31 @@ axis_lock_angular_z = true
 gravity_scale = 2.0
 script = ExtResource("1_tdomp")
 head = NodePath("head")
-cam = NodePath("head/cam")
+cam = NodePath("head/cam_holder/cam")
 floorcast = NodePath("floorcast")
-fade_in_out = NodePath("fade_in_out")
 
 [node name="head" type="Node3D" parent="." unique_id=1854367240]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="cam" type="Camera3D" parent="head" unique_id=1546357117]
+[node name="cam_holder" type="Node3D" parent="head" unique_id=1119058644]
+unique_name_in_owner = true
+script = ExtResource("2_djten")
+
+[node name="cam" type="Camera3D" parent="head/cam_holder" unique_id=1546357117]
 unique_name_in_owner = true
 
-[node name="item holder" type="Node3D" parent="head/cam" unique_id=466753919]
+[node name="item holder" type="Node3D" parent="head/cam_holder/cam" unique_id=466753919]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8354021)
 
-[node name="bow" parent="head/cam/item holder" unique_id=442002776 instance=ExtResource("2_grhfl")]
+[node name="bow" parent="head/cam_holder/cam/item holder" unique_id=442002776 instance=ExtResource("2_grhfl")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="head/cam/item holder/bow" unique_id=235951340]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/cam_holder/cam/item holder/bow" unique_id=235951340]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22156137, -0.14076173, 0.35986793)
 visible = false
 mesh = SubResource("BoxMesh_grhfl")
 
-[node name="int_cast" type="RayCast3D" parent="head/cam" unique_id=1386741734]
+[node name="int_cast" type="RayCast3D" parent="head/cam_holder/cam" unique_id=1386741734]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.53089297)
 target_position = Vector3(0, 0, -3)
@@ -144,6 +158,108 @@ text = "f"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="healthbar" type="TextureProgressBar" parent="Control" unique_id=1493597844]
+custom_minimum_size = Vector2(300, 64)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -56.0
+offset_right = 150.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("6_6oxdc")
+texture_over = ExtResource("5_8xlo7")
+texture_progress = ExtResource("6_6oxdc")
+tint_under = Color(0.1584723, 0.15847233, 0.1584723, 1)
+tint_progress = Color(0.5923224, 0.37752873, 0.3594362, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Control/healthbar" unique_id=2086809141]
+visible = false
+z_index = -1
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="hit_effect" type="Control" parent="Control" unique_id=913169719]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("6_rneyr")
+
+[node name="TextureRect" type="TextureRect" parent="Control/hit_effect" unique_id=732054263]
+modulate = Color(1, 0.3254902, 0.25882354, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -449.0
+offset_top = -336.0
+offset_right = 1202.4783
+offset_bottom = 851.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_qfdfa")
+
+[node name="TextureRect2" type="TextureRect" parent="Control/hit_effect/TextureRect" unique_id=1370454526]
+modulate = Color(18.892157, 13.328268, 12.412692, 0.09411765)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -823.73914
+offset_top = -479.5
+offset_right = 828.26086
+offset_bottom = 413.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_kf672")
+expand_mode = 1
+
+[node name="money" type="Label" parent="Control" unique_id=1402521768]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = -50.0
+offset_right = 79.0
+offset_bottom = -27.0
+grow_vertical = 0
+text = "$0"
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=649736458]
+z_index = -2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -91.0
+offset_right = 320.0
+offset_bottom = 37.00128
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("10_6oxdc")
+
 [node name="floorcast" type="RayCast3D" parent="." unique_id=717835614]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45256764, 0)
 target_position = Vector3(0, -1.5, 0)
@@ -196,4 +312,15 @@ volume_db = -10.0
 stream = ExtResource("13_djten")
 volume_db = -10.0
 
-[node name="fade_in_out" parent="." unique_id=705562921 instance=ExtResource("4_pjuw3")]
+[node name="hit 1" type="AudioStreamPlayer" parent="sounds" unique_id=89447665]
+stream = ExtResource("19_1qy2w")
+volume_db = -8.283
+
+[node name="hitbox" type="StaticBody3D" parent="." unique_id=1710353216]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("15_titie")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox" unique_id=257533956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20166016, 0)
+shape = SubResource("CapsuleShape3D_pjuw3")

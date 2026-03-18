@@ -7,11 +7,14 @@ extends Area3D
 @export var dialogue_res: DialogueResource
 @onready var balloon = preload("res://player/dialogue/balloon.tscn")
 
+var can_take = true
+
 signal take_elivator(result)
 
 
 func _ready() -> void:
 	if starting_inside == true:
+		can_take = false
 		Global.audio_manager.get_sound("metal_door").pitch_scale = 1.5
 		Global.audio_manager.get_sound("metal_door").play()
 	#DialogueManager.method_called.connect(_on_dialogue_method)
@@ -20,8 +23,9 @@ func _ready() -> void:
 	#if method_name == "set_entered_lab":
 		#Globals.entered_lab = true
 
+
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and can_take:
 		var new_balloon = balloon.instantiate()
 		#get_tree().get_first_node_in_group("world").add_child(new_balloon)
 		add_child(new_balloon)
@@ -30,6 +34,7 @@ func _on_body_entered(body: Node3D) -> void:
 		#new_balloon.method
 		#new_balloon.
 		Global.in_menu = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
 		#var result = await take_elivator
 		##await DialogueManager.method_called
@@ -40,8 +45,14 @@ func _on_body_entered(body: Node3D) -> void:
 		#get_tree().change_scene_to_file(file_string)
 
 func change_scene():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Global.audio_manager.get_sound("metal_door").pitch_scale = 1.0
 	Global.audio_manager.get_sound("metal_door").play()
 	Global.change_scene(destination, 0.4)
 	#Global.audio_manager.get_sound("metal_door").pitch_scale = 1.5
 	#Global.audio_manager.get_sound("metal_door").play()
+
+
+func _on_body_exited(body: Node3D) -> void:
+	if starting_inside:
+		can_take = true

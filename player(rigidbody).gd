@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 			apply_central_force((speed + speed_bump) * direction)
 	
 	#if %int_cast.is_colliding():
-	if %int_cast.get_collider() != null and %int_cast.get_collider().has_method("interacted"):
+	if %int_cast.get_collider() != null and %int_cast.get_collider().has_method("interacted") and Global.in_menu == false:
 		$Control/int_indicator.show()
 		if Input.is_action_just_pressed("interact"):
 			#print("insfdg")
@@ -148,3 +148,21 @@ func use_floorcast(delta):
 
 func dialogue():
 	pass
+
+func hit(dmg):
+	health -= dmg
+	$Control/healthbar.value = health
+	#%cam_holder.shake(2.4 + dmg * 0.04, 180.0)
+	#%cam_holder.shake(2.0 + dmg * 0.02, 20, 0.5)
+	%cam_holder.shake(2.0 + dmg * 0.028, 10, 10)
+	$Control/hit_effect.show_effect(clamp(0.4 + dmg * 0.01, 0, 1), 2.0)
+	$"sounds/hit 1".play()
+	
+	if health <= 0:
+		die()
+
+func die():
+	#Global.in_menu = true
+	Global.change_scene("res://hub world.tscn")
+	#get_tree().change_scene_to_file("res://hub world.tscn")
+	
