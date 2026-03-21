@@ -28,15 +28,16 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * Global.sense)
-		cam.rotate_x(-event.relative.y * Global.sense)
-		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-75), deg_to_rad(75))
+		head.rotate_y(-event.relative.x * (Global.sense * 0.001))
+		cam.rotate_x(-event.relative.y * (Global.sense * 0.001))
+		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-85), deg_to_rad(85))
 		
 
 
 func _process(delta: float) -> void:
 	$Control/fps.text = str(Engine.get_frames_per_second())
 	$Control/speed.text = str(roundi(linear_velocity.length()))
+	$Control/money.text = "$" + str(Global.money)
 	
 	if fov != base_fov:
 		fov = move_toward(fov, base_fov, delta * fov_recovery)

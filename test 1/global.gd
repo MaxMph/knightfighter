@@ -1,10 +1,12 @@
 extends Node
 
-var sense = 0.001
+var sense = 1.0
 var in_menu = false
 
 var audio_manager
 var fade_in_out
+
+var money = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,5 +35,7 @@ func change_scene(scene:String, wait_time = 0.0):
 	return
 
 func dialogue_end():
+	#await get_tree().physics_frame
+	await get_tree().create_timer(0.2).timeout
 	in_menu = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

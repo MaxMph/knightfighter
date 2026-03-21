@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://itjggrtgloqn" path="res://player(rigidbody).gd" id="1_tdomp"]
 [ext_resource type="Script" uid="uid://c6lbwxq3ui5wv" path="res://cam_shake.gd" id="2_djten"]
-[ext_resource type="PackedScene" uid="uid://80luihuqynhe" path="res://bow.tscn" id="2_grhfl"]
+[ext_resource type="PackedScene" uid="uid://c2wfxnts5i05d" path="res://bow.tscn" id="2_grhfl"]
 [ext_resource type="Shader" uid="uid://c1552vry81var" path="res://textures/speedlines 1.gdshader" id="3_h2puo"]
 [ext_resource type="Script" uid="uid://b4hw6wu5p5gjd" path="res://player/sounds.gd" id="4_ngdxa"]
 [ext_resource type="Texture2D" uid="uid://di0igfstxs4rb" path="res://textures/ui/healthbar (front).png" id="5_8xlo7"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://ctmqx53ccj0gy" path="res://audio/footsteps/Footsteps_Rock_Walk_08.wav" id="13_djten"]
 [ext_resource type="Script" uid="uid://dpiat0ntslkxn" path="res://player/hitbox.gd" id="15_titie"]
 [ext_resource type="AudioStream" uid="uid://v8ydi5jvt56p" path="res://audio/effects/hit sound combo.mp3" id="19_1qy2w"]
+[ext_resource type="PackedScene" uid="uid://cw8ylvfb401xa" path="res://textures/ui/pause_menu.tscn" id="22_t3ocy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_grhfl"]
 size = Vector3(0.1, 1, 0.1)
@@ -315,6 +316,8 @@ volume_db = -10.0
 [node name="hit 1" type="AudioStreamPlayer" parent="sounds" unique_id=89447665]
 stream = ExtResource("19_1qy2w")
 volume_db = -8.283
+
+[node name="pause menu" parent="." unique_id=1634353852 instance=ExtResource("22_t3ocy")]
 
 [node name="hitbox" type="StaticBody3D" parent="." unique_id=1710353216]
 collision_layer = 4

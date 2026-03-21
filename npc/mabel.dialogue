@@ -1,14 +1,23 @@
 ~ start
 Mabel: [[Hello|Greetings|Good day]] Traveler, What would you wish to speek about?
+~ ask
+- Where can I go to explore the ruins.
+	Mabel: There is an elivator to my left that will take you to a chamber below here, I recomend starting there.
 - Where are we?
-	Mabel: ...
+	Mabel: this is a ruin outpost. its a chamber that was cleared by a traveler long ago.
+	Mabel: now it acts as a safehaven for those who wish to venture further into the forgoten.
+	Mabel: what makes this chamber so special, however, was the discovery that the souls of those who perish within its reach are returned here, to live on once more.
+	Mabel: if the worst comes to you in the ruins, true death will not find you.
+	Mabel: I recomend you aviod that outcome though, as its quite the unplesant experience.
+	=> ask
 - Who are you?
-	Mabel: asdfarfrg
+	Mabel: My name is Mabel, I look after this place, and do my best to help the travelers who explore these ruins.
+	=> ask
 - Nevermind
 #- Start again => start
 #	- End the conversation => END
-Mabel: I wish you well, traveler.
-#do Global.in_menu = false
-do Global.dialogue_end()
-do dialogue_done()
-=> END
+	Mabel: I wish you well, traveler.
+	#do Global.in_menu = false
+	do Global.dialogue_end()
+	do dialogue_done()
+	=> END

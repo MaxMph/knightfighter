@@ -231,6 +231,116 @@ shadow_mesh = SubResource("ArrayMesh_u56xt")
 radius = 0.60498047
 height = 2.6263428
 
+[sub_resource type="Animation" id="Animation_4lfn4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hair_001:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.15040922, 2.3841858e-07)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head_001:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.15040916, 2.3841858e-07)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hair_001:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body_001:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iixe1"]
+resource_name = "head_sway"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hair_001:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.15040922, 2.3841858e-07), Vector3(0, 0.148, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head_001:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1.035265),
+"update": 0,
+"values": [Vector3(0, 0.15040916, 2.3841858e-07), Vector3(0, 0.148, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hair_001:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0017453292, -0.017453292, 0), Vector3(0, 0, 0), Vector3(-0.0017453292, 0.017453292, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body_001:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.006981317, 0), Vector3(0, 0, 0), Vector3(0, 0.006981317, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nwube"]
+_data = {
+&"RESET": SubResource("Animation_4lfn4"),
+&"head_sway": SubResource("Animation_iixe1")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ub3ay"]
 size = Vector3(6, 8, 13)
 
@@ -254,12 +364,12 @@ transform = Transform3D(0.339, 0, 0, 0, 0.339, 0, 0, 0, 0.271, 0, 0.15040916, 2.
 mesh = SubResource("ArrayMesh_lktll")
 
 [node name="hair_001" type="MeshInstance3D" parent="npc 1" unique_id=332987884]
-transform = Transform3D(0.339, 0, 0, 0, 0.339, 0, 0, 0, 0.271, 0, 0.15040922, 2.3841858e-07)
+transform = Transform3D(0.339, 0, 0, 0, 0.33899996, 0, 0, 0, 0.271, 0, 0.15040922, 2.3841858e-07)
 material_override = SubResource("StandardMaterial3D_jb5dg")
 mesh = SubResource("ArrayMesh_3vtrb")
 
 [node name="body_001" type="MeshInstance3D" parent="npc 1" unique_id=1793783743]
-transform = Transform3D(0.339, 0, 0, 0, 0.339, 0, 0, 0, 0.271, 0, 0.14630389, 2.3841858e-07)
+transform = Transform3D(0.339, 0, 0, 0, 0.33899996, 0, 0, 0, 0.271, 0, 0.14630389, 2.3841858e-07)
 mesh = SubResource("ArrayMesh_fp2qw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="npc 1" unique_id=1974093229]
@@ -269,6 +379,10 @@ dialogue_res = ExtResource("7_d6esa")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="npc 1/StaticBody3D" unique_id=1793259200]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.052864075, -0.3217163, 0)
 shape = SubResource("CapsuleShape3D_ir822")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="npc 1" unique_id=390225016]
+libraries/ = SubResource("AnimationLibrary_nwube")
+autoplay = &"head_sway"
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1462234666]
 collision_layer = 0

@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bfidq4usv6qhf" path="res://audio/freesound_community-metallic-door-shut-98740.mp3" id="6_l2k84"]
 [ext_resource type="AudioStream" uid="uid://lmcfxj5r5h3w" path="res://audio/tracks/Goldberg Variations, BWV. 988 - Variation 7.mp3" id="7_v0gdi"]
 [ext_resource type="AudioStream" uid="uid://bf66m0m8um7qg" path="res://audio/tracks/Novelette no. 8, Op. 21.mp3" id="8_7fh0q"]
+[ext_resource type="AudioStream" uid="uid://cxygtlay56jvk" path="res://audio/coin.mp3" id="9_7fh0q"]
 
 [node name="audio manager" type="Node" unique_id=1936029971]
 script = ExtResource("1_bq1v2")
@@ -44,3 +45,7 @@ volume_db = -20.0
 [node name="battle_1" type="AudioStreamPlayer" parent="tracks" unique_id=683210610]
 stream = ExtResource("8_7fh0q")
 volume_db = -15.0
+
+[node name="money" type="AudioStreamPlayer" parent="." unique_id=1844943630]
+stream = ExtResource("9_7fh0q")
+max_polyphony = 12

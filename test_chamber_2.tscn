@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://tpd4cpaur812" path="res://phase_2.gd" id="8_gt14h"]
 [ext_resource type="Script" uid="uid://c41d8370pn055" path="res://elivator.gd" id="8_sga3f"]
 [ext_resource type="Script" uid="uid://bnfbe5olsuem1" path="res://phase_1.gd" id="9_csmu1"]
+[ext_resource type="Material" uid="uid://tdxtij70xb82" path="res://textures/orb texture 1.tres" id="11_3aox2"]
 [ext_resource type="Script" uid="uid://1j47twuhym0c" path="res://door_shut.gd" id="12_08lnh"]
 [ext_resource type="AudioStream" uid="uid://bdvbuq8uypssg" path="res://audio/effects/soundreality-hit-windy-thud-399086.mp3" id="13_hh783"]
 [ext_resource type="AudioStream" uid="uid://cce5mj06fbjpj" path="res://audio/effects/freesound_community-stone-creek-43557.mp3" id="14_tlp53"]
@@ -556,6 +557,7 @@ script = ExtResource("5_c86tl")
 shape = SubResource("SphereShape3D_w3nvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="phase 2/StaticBody3D6" unique_id=259840678]
+material_override = ExtResource("11_3aox2")
 mesh = SubResource("SphereMesh_4x64m")
 
 [node name="shooter" type="Node3D" parent="phase 2/StaticBody3D6" unique_id=1321148384]
@@ -574,6 +576,7 @@ script = ExtResource("5_c86tl")
 shape = SubResource("SphereShape3D_w3nvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="phase 2/StaticBody3D7" unique_id=150862908]
+material_override = ExtResource("11_3aox2")
 mesh = SubResource("SphereMesh_4x64m")
 
 [node name="shooter" type="Node3D" parent="phase 2/StaticBody3D7" unique_id=1314811259]
@@ -592,6 +595,7 @@ script = ExtResource("5_c86tl")
 shape = SubResource("SphereShape3D_w3nvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="phase 2/StaticBody3D8" unique_id=675756317]
+material_override = ExtResource("11_3aox2")
 mesh = SubResource("SphereMesh_4x64m")
 
 [node name="shooter" type="Node3D" parent="phase 2/StaticBody3D8" unique_id=463051352]
@@ -618,6 +622,7 @@ script = ExtResource("5_c86tl")
 shape = SubResource("SphereShape3D_w3nvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/triggers/StaticBody3D3" unique_id=466396579]
+material_override = ExtResource("11_3aox2")
 mesh = SubResource("SphereMesh_4x64m")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="phase 1/triggers" unique_id=7933626]
@@ -628,6 +633,7 @@ script = ExtResource("5_c86tl")
 shape = SubResource("SphereShape3D_w3nvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/triggers/StaticBody3D4" unique_id=1934243758]
+material_override = ExtResource("11_3aox2")
 mesh = SubResource("SphereMesh_4x64m")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="phase 1/triggers" unique_id=61310764]
@@ -638,6 +644,7 @@ script = ExtResource("5_c86tl")
 shape = SubResource("SphereShape3D_w3nvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/triggers/StaticBody3D5" unique_id=1604795163]
+material_override = ExtResource("11_3aox2")
 mesh = SubResource("SphereMesh_4x64m")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="phase 1/triggers" unique_id=1571321900]
@@ -648,6 +655,7 @@ script = ExtResource("5_c86tl")
 shape = SubResource("SphereShape3D_w3nvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/triggers/StaticBody3D2" unique_id=425244732]
+material_override = ExtResource("11_3aox2")
 mesh = SubResource("SphereMesh_4x64m")
 
 [node name="StaticBody3D9" type="StaticBody3D" parent="phase 1" unique_id=483886636]
@@ -658,6 +666,7 @@ script = ExtResource("5_c86tl")
 shape = SubResource("SphereShape3D_w3nvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="phase 1/StaticBody3D9" unique_id=2011360612]
+material_override = ExtResource("11_3aox2")
 mesh = SubResource("SphereMesh_4x64m")
 
 [node name="shooter" type="Node3D" parent="phase 1/StaticBody3D9" unique_id=793789604]
