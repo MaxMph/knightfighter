@@ -46,3 +46,5 @@ func shoot():
 	get_tree().root.add_child(new_arrow)
 	drawed = 0
 	#$Armature.position = idle_pos
+	
+	$AudioStreamPlayer.play()

@@ -324,3 +324,11 @@ script = ExtResource("15_titie")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox" unique_id=257533956]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20166016, 0)
 shape = SubResource("CapsuleShape3D_pjuw3")
+
+[node name="cyote_time" type="Timer" parent="." unique_id=100687639]
+wait_time = 0.2
+one_shot = true
+
+[node name="jump_buffer" type="Timer" parent="." unique_id=52938839]
+wait_time = 0.2
+one_shot = true

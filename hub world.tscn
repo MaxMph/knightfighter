@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bc6mewi2s5325"]
 
+[ext_resource type="Script" uid="uid://btlh2vxww3jb6" path="res://hub_world.gd" id="1_4lfn4"]
 [ext_resource type="PackedScene" uid="uid://c2cpxlhtb7udp" path="res://player(rigidbody).tscn" id="1_gcbh6"]
 [ext_resource type="PackedScene" uid="uid://hmt21fqfe47n" path="res://menu_backround_1.tscn" id="2_du6s0"]
 [ext_resource type="Texture2D" uid="uid://d4dni3yce55w0" path="res://blender files/npc 1/npc 1_face1 (try 2).png" id="3_ub3ay"]
@@ -237,6 +238,7 @@ size = Vector3(6, 8, 13)
 size = Vector3(2, 4, 2)
 
 [node name="npc world test" type="Node3D" unique_id=1153305730 groups=["world"]]
+script = ExtResource("1_4lfn4")
 
 [node name="player(rigidbody)" parent="." unique_id=2069604680 instance=ExtResource("1_gcbh6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)

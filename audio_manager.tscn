@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://tkw5yq5ljqen" path="res://audio/ambient/freesound_community-spring-birds-loop-with-low-cut-new-jersey-6267.mp3" id="4_nhx87"]
 [ext_resource type="AudioStream" uid="uid://ctn8br7prv8vc" path="res://audio/ambient/looperman-l-7029753-0419290-quiet-piao-classic.wav" id="5_nhx87"]
 [ext_resource type="AudioStream" uid="uid://bfidq4usv6qhf" path="res://audio/freesound_community-metallic-door-shut-98740.mp3" id="6_l2k84"]
+[ext_resource type="AudioStream" uid="uid://lmcfxj5r5h3w" path="res://audio/tracks/Goldberg Variations, BWV. 988 - Variation 7.mp3" id="7_v0gdi"]
+[ext_resource type="AudioStream" uid="uid://bf66m0m8um7qg" path="res://audio/tracks/Novelette no. 8, Op. 21.mp3" id="8_7fh0q"]
 
 [node name="audio manager" type="Node" unique_id=1936029971]
 script = ExtResource("1_bq1v2")
@@ -32,3 +34,13 @@ volume_db = -20.0
 [node name="metal_door" type="AudioStreamPlayer" parent="." unique_id=821027724]
 stream = ExtResource("6_l2k84")
 volume_db = -5.0
+
+[node name="tracks" type="Node" parent="." unique_id=1646449531]
+
+[node name="calm_1" type="AudioStreamPlayer" parent="tracks" unique_id=76852405]
+stream = ExtResource("7_v0gdi")
+volume_db = -20.0
+
+[node name="battle_1" type="AudioStreamPlayer" parent="tracks" unique_id=683210610]
+stream = ExtResource("8_7fh0q")
+volume_db = -15.0

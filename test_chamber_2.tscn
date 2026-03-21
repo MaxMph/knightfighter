@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dsdvw3i1v3vrd"]
 
 [ext_resource type="Material" uid="uid://bvegv2wucrobr" path="res://textures/wall 1.tres" id="1_1r0hw"]
+[ext_resource type="Script" uid="uid://b27y0222ml1os" path="res://test_chamber_2.gd" id="1_xi04d"]
 [ext_resource type="Texture2D" uid="uid://lv8w5e3f5hdn" path="res://textures/gray-cement-stone-wall-128x128.png" id="2_4x64m"]
 [ext_resource type="PackedScene" uid="uid://c2cpxlhtb7udp" path="res://player(rigidbody).tscn" id="2_llelv"]
 [ext_resource type="Script" uid="uid://b6m35tsv4x68c" path="res://slam_enemy.gd" id="3_c86tl"]
@@ -365,6 +366,7 @@ _data = {
 }
 
 [node name="test chamber 2" type="Node3D" unique_id=1263757951 groups=["world"]]
+script = ExtResource("1_xi04d")
 
 [node name="player(rigidbody)" parent="." unique_id=2069604680 instance=ExtResource("2_llelv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 83)

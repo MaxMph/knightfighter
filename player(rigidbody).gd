@@ -18,6 +18,9 @@ var runfov = 0
 @export var floorcast: RayCast3D
 @export var fade_in_out: ColorRect
 
+var can_jump = true
+var was_on_floor = true
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	#$fade_in_out.fade(1, -1)
@@ -51,20 +54,39 @@ func _physics_process(delta: float) -> void:
 	use_floorcast(delta)
 	
 	if linear_velocity.y < -60:
-		linear_velocity.y = -70
+		linear_velocity.y = -60
+
 
 	$floorcast.enabled = true
-	if Input.is_action_just_pressed("jump") and Global.in_menu == false:
-		if linear_velocity.y < 0:
-			linear_velocity.y = 0
+	
+	
+	if $floorcast.is_colliding():
+		was_on_floor = true
+	else:
+		if was_on_floor:
+			was_on_floor = false
+			$cyote_time.start()
+	#cyote_time()
+	#jump_bufer()
+	
+	if Input.is_action_just_pressed("jump") or $jump_buffer.is_stopped() == false and Global.in_menu == false:
+		#if linear_velocity.y < 0:
+			#linear_velocity.y = 0
 		
-		if floorcast.is_colliding():
+		if floorcast.is_colliding() or $cyote_time.is_stopped() == false:
+			#if linear_velocity.y < 0:
+				#linear_velocity.y = 0
 			$sounds.step_sound()
 			if linear_velocity.y < 6:
 				linear_velocity.y = 0
 				$floorcast.enabled = false
 		#apply_central_impulse(Vector3.UP * jump_vel)
-		linear_velocity.y += jump_vel
+			linear_velocity.y += jump_vel
+			$cyote_time.stop()
+			$jump_buffer.stop()
+		else:
+			if $jump_buffer.is_stopped():
+				$jump_buffer.start()
 		#print("Jump")
 	#Global.in_menu = false
 	
