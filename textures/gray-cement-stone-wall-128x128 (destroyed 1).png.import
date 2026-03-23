@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpmxed2fssn3u"
 path.s3tc="res://.godot/imported/gray-cement-stone-wall-128x128 (destroyed 1).png-7ad3652d4df3af6615d6564a7dc98dbf.s3tc.ctex"
+path.etc2="res://.godot/imported/gray-cement-stone-wall-128x128 (destroyed 1).png-7ad3652d4df3af6615d6564a7dc98dbf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/gray-cement-stone-wall-128x128 (destroyed 1).png"
-dest_files=["res://.godot/imported/gray-cement-stone-wall-128x128 (destroyed 1).png-7ad3652d4df3af6615d6564a7dc98dbf.s3tc.ctex"]
+dest_files=["res://.godot/imported/gray-cement-stone-wall-128x128 (destroyed 1).png-7ad3652d4df3af6615d6564a7dc98dbf.s3tc.ctex", "res://.godot/imported/gray-cement-stone-wall-128x128 (destroyed 1).png-7ad3652d4df3af6615d6564a7dc98dbf.etc2.ctex"]
 
 [params]
 

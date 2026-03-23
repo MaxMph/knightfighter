@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddqhlouti0i5p"
 path.s3tc="res://.godot/imported/Panorama_Sky_02-512x512.png-ac25b715c9be1e726ca39e080e0cdfba.s3tc.ctex"
+path.etc2="res://.godot/imported/Panorama_Sky_02-512x512.png-ac25b715c9be1e726ca39e080e0cdfba.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/Panorama_Sky_02-512x512.png"
-dest_files=["res://.godot/imported/Panorama_Sky_02-512x512.png-ac25b715c9be1e726ca39e080e0cdfba.s3tc.ctex"]
+dest_files=["res://.godot/imported/Panorama_Sky_02-512x512.png-ac25b715c9be1e726ca39e080e0cdfba.s3tc.ctex", "res://.godot/imported/Panorama_Sky_02-512x512.png-ac25b715c9be1e726ca39e080e0cdfba.etc2.ctex"]
 
 [params]
 

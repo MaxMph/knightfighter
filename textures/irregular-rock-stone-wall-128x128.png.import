@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cme4hji5ytml3"
 path.s3tc="res://.godot/imported/irregular-rock-stone-wall-128x128.png-a584f85875c21be11bac1688437510f1.s3tc.ctex"
+path.etc2="res://.godot/imported/irregular-rock-stone-wall-128x128.png-a584f85875c21be11bac1688437510f1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/irregular-rock-stone-wall-128x128.png"
-dest_files=["res://.godot/imported/irregular-rock-stone-wall-128x128.png-a584f85875c21be11bac1688437510f1.s3tc.ctex"]
+dest_files=["res://.godot/imported/irregular-rock-stone-wall-128x128.png-a584f85875c21be11bac1688437510f1.s3tc.ctex", "res://.godot/imported/irregular-rock-stone-wall-128x128.png-a584f85875c21be11bac1688437510f1.etc2.ctex"]
 
 [params]
 

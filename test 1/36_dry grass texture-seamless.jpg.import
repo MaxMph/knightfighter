@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://di5hkn3y8m4oy"
 path.s3tc="res://.godot/imported/36_dry grass texture-seamless.jpg-b548c0ebf9d1fc134453ee7d93c13ad7.s3tc.ctex"
+path.etc2="res://.godot/imported/36_dry grass texture-seamless.jpg-b548c0ebf9d1fc134453ee7d93c13ad7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://test 1/36_dry grass texture-seamless.jpg"
-dest_files=["res://.godot/imported/36_dry grass texture-seamless.jpg-b548c0ebf9d1fc134453ee7d93c13ad7.s3tc.ctex"]
+dest_files=["res://.godot/imported/36_dry grass texture-seamless.jpg-b548c0ebf9d1fc134453ee7d93c13ad7.s3tc.ctex", "res://.godot/imported/36_dry grass texture-seamless.jpg-b548c0ebf9d1fc134453ee7d93c13ad7.etc2.ctex"]
 
 [params]
 
